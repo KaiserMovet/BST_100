@@ -1,0 +1,38 @@
+name: runner
+
+inputs:
+  folder:
+    required: true
+  build_command:
+    required: false
+    default: ""
+  run_command:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Prepare
+      shell: bash
+      run: |
+        mkdir /res
+        mkdir /datasets
+        cp datasets/* /datasets
+        touch /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+    - name: Build
+      if: ${{ inputs.build_command }}
+      working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
+      shell: bash
+      run: |
+        ${{ inputs.build_command }}
+    - name: Run
+      working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
+      shell: bash
+      run: |
+        ${{ inputs.run_command }} ${{ matrix.amount }} > /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+        cat /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+    - name: Upload Output
+      uses: actions/upload-artifact@v3
+      with:
+        name: results
+        path: /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt

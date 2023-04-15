@@ -1,0 +1,52 @@
+# THIS FILE IS GENERATED AUTOMATICALLY. IF YOU WANT TO CHANGE THIS, CHANGE
+# 'templates/test_lang.yaml.j2' FILE
+
+name: Test lang - {{ job.language }}
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - BST/{{ job.language }}/**
+
+jobs:
+  test_output_base:
+    runs-on: ubuntu-latest
+    container:
+      image: {{ job.image }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: {{ job.language }}
+          {% if job.build_cmd %}
+          build_command: {{ job.build_cmd }}
+          {% endif %}
+          run_command: {{ job.run_cmd }}
+          lenght: 100
+          height: 14
+  {% for test_data in test_data_collection %}
+  test_output_{{ test_data.name }}:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: {{ job.image }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: {{ job.language }}
+          {% if job.build_cmd %}
+          build_command: {{ job.build_cmd }}
+          {% endif %}
+          run_command: {{ job.run_cmd }}
+          lenght: {{ test_data.lenght }}
+          height: {{ test_data.height }}
+
+  {% endfor %}
+

@@ -1,0 +1,111 @@
+# THIS FILE IS GENERATED AUTOMATICALLY. IF YOU WANT TO CHANGE THIS, CHANGE
+# 'templates/test_lang.yaml.j2' FILE
+
+name: Test lang - c
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - BST/c/**
+
+jobs:
+  test_output_base:
+    runs-on: ubuntu-latest
+    container:
+      image: gcc:12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: c
+          
+          build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+          
+          run_command: ./main.out
+          lenght: 100
+          height: 14
+  
+  test_output_1:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: gcc:12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: c
+          
+          build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+          
+          run_command: ./main.out
+          lenght: 2
+          height: 2
+
+  
+  test_output_2:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: gcc:12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: c
+          
+          build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+          
+          run_command: ./main.out
+          lenght: 5
+          height: 4
+
+  
+  test_output_3:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: gcc:12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: c
+          
+          build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+          
+          run_command: ./main.out
+          lenght: 15
+          height: 7
+
+  
+  test_output_4:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: gcc:12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: c
+          
+          build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+          
+          run_command: ./main.out
+          lenght: 500
+          height: 19
+
+  

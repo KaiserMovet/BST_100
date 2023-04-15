@@ -1,0 +1,2 @@
+image_name: ruby:3
+run_command: ruby main.rb
