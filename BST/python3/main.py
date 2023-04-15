@@ -4,14 +4,14 @@ from tree import Tree
 
 
 def get_add_numbers() -> list[int]:
-    with open("../../datatests/add.txt", "r") as file:
+    with open("../../datasets/add.txt", "r") as file:
         content = file.read()
         numbers = list(map(int, content.split()))
     return numbers
 
 
 def get_check_numbers() -> list[int]:
-    with open("../../datatests/check.txt", "r") as file:
+    with open("../../datasets/check.txt", "r") as file:
         content = file.read()
         numbers = list(map(int, content.split()))
     return numbers

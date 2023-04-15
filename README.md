@@ -20,13 +20,15 @@ The following tests were conducted:
 - 20 million checks were performed to see if an element exists.
 - The time to count the elements in the tree was measured.
 - The height of the tree was calculated.
+
   Each test was repeated 3 times and then the average was calculated.
+  Final BST has 5.000.000 elements and 57 levels
 
 Here are the performance test results for each implementation:
 
 | Language | Version | Add Time (s) | Contains Time (s) | Count Elements Time (s) | Height Time (s) |
 | -------- | ------- | ------------ | ----------------- | ----------------------- | --------------- |
-| Python   | 3.11.0  | 99.65        | 111.73            | 4.87                    | 5.62            |
+| Python   | 3.11.0  | 45.12        | 54.78             | 2.26                    | 2.69            |
 
 ## Requirements
 
