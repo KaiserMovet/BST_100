@@ -1,17 +1,17 @@
 import datetime
-
+from typing import List
 from tree import Tree
 
 
-def get_add_numbers() -> list[int]:
-    with open("../../datasets/add.txt", "r") as file:
+def get_add_numbers() -> List[int]:
+    with open("/datasets/add.txt", "r") as file:
         content = file.read()
         numbers = list(map(int, content.split()))
     return numbers
 
 
-def get_check_numbers() -> list[int]:
-    with open("../../datasets/check.txt", "r") as file:
+def get_check_numbers() -> List[int]:
+    with open("/datasets/check.txt", "r") as file:
         content = file.read()
         numbers = list(map(int, content.split()))
     return numbers
