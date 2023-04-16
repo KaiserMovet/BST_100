@@ -27,4 +27,8 @@ class Tree{
         if(this->root == nullptr) return 0;
         return this->root->height();
     }
+
+    public: ~Tree(){
+        if(this->root != nullptr) delete this->root;
+    }
 };

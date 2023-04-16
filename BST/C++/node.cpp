@@ -68,5 +68,9 @@ class Node{
         return 1 + std::max(left_height, right_height);
     }
 
+    public: ~Node(){
+        if(this->left != nullptr) delete this->left;
+        if(this->right != nullptr) delete this->right;
+    }
 
 };

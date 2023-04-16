@@ -81,6 +81,7 @@ int main() {
         stop = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         check_results[i] = static_cast<int>(duration.count());
+        delete tree;
     }
 
 
