@@ -10,6 +10,7 @@ The project currently includes implementations of BST in the following languages
 
 - Python3
 - C++
+- C
 
 Each implementation is located in a separate directory in the repository.
 
@@ -31,11 +32,12 @@ Here are the performance test results for each implementation:
 | -------- | ------- | ------------ | ----------------- | ----------------------- | --------------- |
 | Python   | 3.11.0  | 45.12        | 54.78             | 2.26                    | 2.69            |
 | C++      | gcc 12  | 8.01         | 9.55              | 0.38                    | 0.51            |
+| C        | c99     | 7.33         | 9.00              | 0.00                    | 0.00            |
 
 ## Requirements
 
-To run the code in each language, you will need to install the appropriate interpreter and development tools.
+To run the code in each language, you will need to have Docker installed.
 
 ## Running the code
 
-To run the code in each language, navigate to the appropriate directory in the repository and run the script or program from the command line.
+To run the code in each language, navigate to the appropriate directory in the repository and run `./run.sh`.
