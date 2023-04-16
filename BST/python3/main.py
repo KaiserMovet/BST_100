@@ -26,6 +26,7 @@ def main() -> None:
     add_numbers = get_add_numbers()
     check_numbers = get_check_numbers()
 
+
     for _ in range(3):
         bst = Tree()
         # Add elements

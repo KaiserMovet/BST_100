@@ -29,6 +29,7 @@ Here are the performance test results for each implementation:
 | Language | Version | Add Time (s) | Contains Time (s) | Count Elements Time (s) | Height Time (s) |
 | -------- | ------- | ------------ | ----------------- | ----------------------- | --------------- |
 | Python   | 3.11.0  | 45.12        | 54.78             | 2.26                    | 2.69            |
+| C++      | gcc 12  | 8.01         | 9.55              | 0.38                    | 0.51            |
 
 ## Requirements
 
