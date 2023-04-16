@@ -2,7 +2,7 @@
 
 # Implementation of BST in various programming languages
 
-This project consists of implementations of BST (Binary Search Tree) in various programming languages. A BST is a data structure that allows for fast searching, adding, and removing of elements in logarithmic time. Each of the implementations has been performance-tested by performing 10,000,000 additions of numbers to the tree, followed by 20,000,000 checks to see if the tree contains elements.
+This project consists of implementations of BST (Binary Search Tree) in various programming languages. A BST is a data structure that allows for fast searching, adding, and removing of elements in logarithmic time. Each of the implementations has been performance-tested by performing 5,000,000 additions of numbers to the tree, followed by 10,000,000 checks to see if the tree contains elements.
 
 ## Implementations
 
@@ -16,8 +16,8 @@ Each implementation is located in a separate directory in the repository.
 
 The following tests were conducted:
 
-- 10 million elements were added to the tree.
-- 20 million checks were performed to see if an element exists.
+- 5 million elements were added to the tree.
+- 10 million checks were performed to see if an element exists.
 - The time to count the elements in the tree was measured.
 - The height of the tree was calculated.
 
