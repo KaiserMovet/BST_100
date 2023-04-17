@@ -11,6 +11,7 @@ The project currently includes implementations of BST in the following languages
 - Python3
 - C++
 - C
+- Lua
 
 Each implementation is located in a separate directory in the repository.
 
@@ -33,6 +34,7 @@ Here are the performance test results for each implementation:
 | Python   | 3.11.0  | 45.12        | 54.78             | 2.26                    | 2.69            |
 | C++      | gcc 12  | 8.01         | 9.55              | 0.38                    | 0.51            |
 | C        | c99     | 7.33         | 9.00              | 0.00                    | 0.00            |
+| Lua      | 5.4.3   | 41.89        | 48.37             | 2.95                    | 3.36            |
 
 ## Requirements
 
