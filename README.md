@@ -23,23 +23,23 @@ The **Tree** class serves as the entry point for interacting with the BST. It ma
 ```mermaid
 classDiagram
 class Node {
-    - int value
-    - Node left
-    - Node right
+    -int value
+    -Node left
+    -Node right
 
-    + add(int value) bool
-    + contain(int value) bool
-    + length() bool
-    + height() bool
+    +add(int value) bool
+    +contain(int value) bool
+    +length() bool
+    +height() bool
 }
 
 class Tree {
-    - Node root
+    -Node root
 
-    + add(int value) bool
-    + contain(int value) bool
-    + length() bool
-    + height() bool
+    +add(int value) bool
+    +contain(int value) bool
+    +length() bool
+    +height() bool
 }
 ```
 
