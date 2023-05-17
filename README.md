@@ -35,7 +35,7 @@ Here are the performance test results for each implementation:
 | C++      | gcc 12  | 8.01         | 9.55              | 0.38                    | 0.51            |
 | C        | c99     | 7.33         | 9.00              | 0.00                    | 0.00            |
 | Lua      | 5.4.3   | 41.89        | 48.37             | 2.95                    | 3.36            |
-| Rust     | 5.4.3   | 11.24        | 13.04             | 0.59                    | 0.59            |
+| Rust     | 1.67    | 11.24        | 13.04             | 0.59                    | 0.59            |
 
 ## Requirements
 
