@@ -14,6 +14,35 @@ The project currently includes implementations of BST in the following languages
 - Lua
 
 Each implementation is located in a separate directory in the repository.
+All implementations are based on two classes, Node and Tree.
+The Node class represents a single node in the BST. It contains an integer value and references to its left and right child nodes. The class provides methods to add a value, check if a value is present, calculate the length (number of nodes) in the subtree, and calculate the height (maximum depth) of the subtree.
+
+The Tree class serves as the entry point for interacting with the BST. It maintains a reference to the root node of the tree and provides methods to add a value, check if a value is present, calculate the length of the tree, and calculate the height of the tree.
+
+```mermaid
+classDiagram
+class Node {
+    - int value
+    - Node left
+    - Node right
+
+    + add(int value) bool
+    + contain(int value) bool
+    + length() bool
+    + height() bool
+}
+
+class Tree {
+    - Node root
+
+    + add(int value) bool
+    + contain(int value) bool
+    + length() bool
+    + height() bool
+}
+```
+
+In some cases, the implementation may differ depending on the language.
 
 ## Performance tests
 
