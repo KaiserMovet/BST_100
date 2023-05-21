@@ -8,14 +8,16 @@ class BSTCollection:
     PYTHON = BST("Python 3.11.0", Path("BST/python3/run.sh"))
     RUST = BST("Rust 1.67", Path("BST/rust/run.sh"))
     C = BST("C c99", Path("BST/c/run.sh"))
-    CPP = BST("C++ gcc 12", Path("BST/c++/run.sh"))
+    CPP = BST("C++ gcc12", Path("BST/c++/run.sh"))
+    LUA = BST("Lua 5.4.3", Path("BST/lua/run.sh"))
+
 
 
 
 
     @classmethod
     def get_all(cls):
-        return [cls.PYTHON, cls.RUST, cls.C, cls.CPP]
+        return [cls.PYTHON, cls.RUST, cls.C, cls.CPP, cls.LUA]
 
 
 def run(bst: BST, amount:int) -> Result:
