@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::Read;
 use std::time::Instant;
+use std::env;
 
 mod bst;
 
@@ -24,62 +25,47 @@ fn get_check_numbers() -> Vec<i32> {
 }
 
 fn main() {
-    let mut x = bst::tree::Tree::new(); 
-    x.add(3);
 
-    let mut add_results = Vec::new();
-    let mut check_results = Vec::new();
-    let mut len_results = Vec::new();
-    let mut height_results = Vec::new();
+    let amount: i32 = env::args().nth(1).unwrap().parse().expect("Integer is expected");
 
-    let add_numbers = get_add_numbers();
-    let check_numbers = get_check_numbers();
+    let add_numbers: Vec<i32> = get_add_numbers().iter().take(amount as usize).cloned().collect();
+    let check_numbers: Vec<i32> = get_check_numbers().iter().take(amount as usize).cloned().collect();
 
-    for _ in 0..3 {
-        let mut tree = bst::tree::Tree::new();
-        
-        // Add elements
-        let start_time = Instant::now();
-        for &i in &add_numbers {
-            tree.add(i);
-        }
-        let end_time = Instant::now();
-        let add_duration = end_time - start_time;
-        add_results.push(add_duration.as_secs_f64());
 
-        // Len elements
-        let start_time = Instant::now();
-        let length = tree.length();
-        let end_time = Instant::now();
-        let len_duration = end_time - start_time;
-        len_results.push(len_duration.as_secs_f64());
-        println!("length: {}", length);
-
-        // Height elements
-        let start_time = Instant::now();
-        let height = tree.height();
-        let end_time = Instant::now();
-        let height_duration = end_time - start_time;
-        height_results.push(height_duration.as_secs_f64());
-        println!("height: {}", height);
-
-        // Check elements
-        let start_time = Instant::now();
-        for &i in &check_numbers {
-            tree.contain(i);
-        }
-        let end_time = Instant::now();
-        let check_duration = end_time - start_time;
-        check_results.push(check_duration.as_secs_f64()); 
+    let mut tree = bst::tree::Tree::new();
+    
+    // Add elements
+    let start_time = Instant::now();
+    for &i in &add_numbers {
+        tree.add(i);
     }
+    let end_time = Instant::now();
+    println!("ADD_TEST:{}", (end_time - start_time).as_secs_f64());
 
-    let average_add: f64 = add_results.iter().sum::<f64>() / add_results.len() as f64;
-    let average_check: f64 = check_results.iter().sum::<f64>() / check_results.len() as f64;
-    let average_len: f64 = len_results.iter().sum::<f64>() / len_results.len() as f64;
-    let average_height: f64 = height_results.iter().sum::<f64>() / height_results.len() as f64;
+    // Check elements
+    let start_time = Instant::now();
+    for &i in &check_numbers {
+        tree.contain(i);
+    }
+    let end_time = Instant::now();
+    println!("CHECK_TEST:{}", (end_time - start_time).as_secs_f64());
+    
+    // Len elements
+    let start_time = Instant::now();
+    for _ in 0..10 {
+        tree.length();
+    }
+    let end_time = Instant::now();
+    println!("LEN_TEST:{}", (end_time - start_time).as_secs_f64()/10.0);
 
-    println!("Average add: {:.2}", average_add);
-    println!("Average check: {:.2}", average_check);
-    println!("Average len: {:.2}", average_len);
-    println!("Average height: {:.2}", average_height);
+    // Height elements
+    let start_time = Instant::now();
+    for _ in 0..10 {
+        tree.height();
+    }
+    let end_time = Instant::now();
+    println!("HEIGHT_TEST:{}", (end_time - start_time).as_secs_f64()/10.0);
+
+    println!("VALIDATION:{}:{}", tree.length(), tree.height());
+
 }

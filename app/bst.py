@@ -2,6 +2,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from .result import Result
 import subprocess
+from logger import logger
+
 
 @dataclass()
 class BST:

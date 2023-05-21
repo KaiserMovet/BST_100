@@ -1,3 +1,4 @@
 *.out
 env
 *.pyc
+BST/rust/main

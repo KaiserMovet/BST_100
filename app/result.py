@@ -39,7 +39,6 @@ class Result:
             if "HEIGHT_TEST" in line:
                 height = float(line.split(":")[1])
             if "VALIDATION" in line:
-                print(line)
                 val = (int(line.split(":")[1]), int(line.split(":")[2]))
         return Result(name=name,
                       amount=amount,
