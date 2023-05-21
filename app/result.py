@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Callable, List, Dict
 from collections import defaultdict
 import matplotlib.pyplot as plt
-
+from logger import logger
 
 class ResultValidation(Exception):
     pass
@@ -26,7 +26,7 @@ class Result:
     def FROM_RESULT(name:str, amount:int, result: str) -> "Result":
         add = None
         check = None
-        len = None
+        leng = None
         height = None
         val = None
         for line in result.splitlines():
@@ -35,17 +35,19 @@ class Result:
             if "CHECK_TEST" in line:
                 check = float(line.split(":")[1])
             if "LEN_TEST" in line:
-                len = float(line.split(":")[1])
+                leng = float(line.split(":")[1])
             if "HEIGHT_TEST" in line:
                 height = float(line.split(":")[1])
             if "VALIDATION" in line:
                 val = (int(line.split(":")[1]), int(line.split(":")[2]))
+        if any([key is None for key in [add, check, leng, height, val]]):
+            logger.warning(F"Cannot find all keys in {name}:{amount}. Full output:\n{result}")
         return Result(name=name,
                       amount=amount,
                       add=add, #type: ignore
                       check=check, #type: ignore
                       height=height, #type: ignore
-                      len=len, #type: ignore
+                      len=leng, #type: ignore
                       validation=val, #type: ignore
                     )
     @staticmethod

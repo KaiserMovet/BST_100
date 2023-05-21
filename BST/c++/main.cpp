@@ -5,7 +5,7 @@
 #include <iomanip>
 #include "tree.cpp"
 
-std::vector<int> get_add_numbers(){
+std::vector<int> get_add_numbers(int amount){
     std::vector<int> numbers;
     std::ifstream input_file("/datasets/add.txt");
     int number;
@@ -13,10 +13,10 @@ std::vector<int> get_add_numbers(){
         numbers.push_back(number);
     }
     input_file.close();
-    return numbers;
+    return std::vector<int>(numbers.begin(), numbers.begin() + amount);
 }
 
-std::vector<int> get_check_numbers(){
+std::vector<int> get_check_numbers(int amount){
     std::vector<int> numbers;
     std::ifstream input_file("/datasets/check.txt");
     int number;
@@ -24,72 +24,55 @@ std::vector<int> get_check_numbers(){
         numbers.push_back(number);
     }
     input_file.close();
-    return numbers;
+    return std::vector<int>(numbers.begin(), numbers.begin() + amount);
 }
 
-double get_avg(int* numbers){
-    int sum = 0;
-    for(int i = 0; i<3;i++){
-        sum += numbers[i];
-    }
-    double avg = (double)sum / 3 / 1000000;
-    return avg;
-}
 
-int main() {
-    int add_results[3];
-    int check_results[3];
-    int len_results[3];
-    int height_results[3];
+int main(int argc, char* argv[]) {
+
+    int amount = std::stoi(argv[1]);
     
-    std::vector<int> add_numbers = get_add_numbers();
-    std::vector<int> check_numbers = get_check_numbers();
+    std::vector<int> add_numbers = get_add_numbers(amount);
+    std::vector<int> check_numbers = get_check_numbers(amount);
 
-    for (int i = 0; i < 3; i++) {
-        Tree* tree = new Tree();
+    
+    Tree* tree = new Tree();
 
-        // Add elements to tree
-        auto start = std::chrono::high_resolution_clock::now();
-        for (int value : add_numbers) {
-            tree->add(value);
-        }
-        auto stop = std::chrono::high_resolution_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        add_results[i] = static_cast<int>(duration.count());
-
-        // Len elements
-        start = std::chrono::high_resolution_clock::now();
-        int length = tree->length();
-        stop = std::chrono::high_resolution_clock::now();
-        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        len_results[i] = static_cast<int>(duration.count());
-        std::cout << "Lenght=" << length << std::endl;
-
-        // height elements
-        start = std::chrono::high_resolution_clock::now();
-        int height = tree->height();
-        stop = std::chrono::high_resolution_clock::now();
-        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        height_results[i] = static_cast<int>(duration.count());
-        std::cout << "Height=" << height << std::endl;
-
-        // Check elements
-        start = std::chrono::high_resolution_clock::now();
-        for (int value : check_numbers) {
-            tree->contain(value);
-        }
-        stop = std::chrono::high_resolution_clock::now();
-        duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        check_results[i] = static_cast<int>(duration.count());
-        delete tree;
+    // Add elements to tree
+    auto start_add = std::chrono::high_resolution_clock::now();
+    for (int value : add_numbers) {
+        tree->add(value);
     }
+    auto stop_add = std::chrono::high_resolution_clock::now();
+    auto duration_add = 1.0 * std::chrono::duration_cast<std::chrono::microseconds>(stop_add - start_add).count();
+    std::cout << "ADD_TEST:" << duration_add/1000000.0 << std::endl;
 
+    // Check elements
+    auto start_check = std::chrono::high_resolution_clock::now();
+    for (int value : add_numbers) {
+        tree->contain(value);
+    }
+    auto stop_check = std::chrono::high_resolution_clock::now();
+    auto duration_check = 1.0 * std::chrono::duration_cast<std::chrono::microseconds>(stop_check - start_check).count();
+    std::cout << "CHECK_TEST:" << duration_check/1000000.0 << std::endl;
 
+    // Len elements
+    auto start_len = std::chrono::high_resolution_clock::now();
+    for (int i=0;i<10;i++) int length = tree->length();
+    auto stop_len = std::chrono::high_resolution_clock::now();
+    auto duration_len = 1.0 * std::chrono::duration_cast<std::chrono::microseconds>(stop_len - start_len).count();
+    std::cout << "LEN_TEST:" << duration_len/1000000.0/10.0 << std::endl;
 
-    std::cout << "Average add: " << std::fixed << std::setprecision(2) << get_avg(add_results) << std::endl;
-    std::cout << "Average check: " << std::fixed << std::setprecision(2) << get_avg(check_results) << std::endl;
-    std::cout << "Average len: " << std::fixed << std::setprecision(2) << get_avg(len_results) << std::endl;
-    std::cout << "Average height: " << std::fixed << std::setprecision(2) << get_avg(height_results) << std::endl;
-   
+    // height elements
+    auto start_h = std::chrono::high_resolution_clock::now();
+    for (int i=0;i<10;i++) int length = tree->height();
+    auto stop_h = std::chrono::high_resolution_clock::now();
+    auto duration_h = 1.0 * std::chrono::duration_cast<std::chrono::microseconds>(stop_h - start_h).count();
+    std::cout << "HEIGHT_TEST:" << duration_h/1000000.0/10.0 << std::endl;
+
+    std::cout << "VALIDATION:"<<tree->length()<<":"<<tree->height()<< std::endl;
+
+    delete tree;
+  
     return 0;
 }
