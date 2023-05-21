@@ -7,11 +7,13 @@ from logger import logger
 class BSTCollection:
     PYTHON = BST("Python 3.11.0", Path("BST/python3/run.sh"))
     RUST = BST("Rust 1.67", Path("BST/rust/run.sh"))
+    C = BST("C c99", Path("BST/c/run.sh"))
+
 
 
     @classmethod
     def get_all(cls):
-        return [cls.PYTHON, cls.RUST]
+        return [cls.PYTHON, cls.RUST, cls.C]
 
 
 def run(bst: BST, amount:int) -> Result:

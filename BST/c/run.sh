@@ -1,16 +1,25 @@
-#!/bin/bash -x
+#!/bin/bash
+if [ -z "$1" ]; then
+  amount=10000000
+else
+  amount=$1
+fi
+
 image_name="gcc:12"
-datasets_path="$(readlink -f $PWD/../../datasets)"
-app_path="$(readlink -f $PWD/.)"
+container_name=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
 
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+datasets_path="$(readlink -f "$script_dir/../../datasets")"
+app_path="$(readlink -f "$script_dir")"
 
+echo "============="
 docker run \
-    --name bst-cpp-container \
+    --name $container_name \
     -v $datasets_path:/datasets \
     -v $app_path:/app \
-    -it $image_name \
-    bash -c "cd app && g++ -std=c99 -o main.out main.c node.c tree.c && ./main.out"
+    $image_name \
+    bash -c "cd app && g++ -std=c99 -o main.out main.c node.c tree.c && ./main.out $amount"
+echo "============="
 
-
-docker stop bst-cpp-container
-docker rm bst-cpp-container
+docker stop $container_name
+docker rm $container_name
