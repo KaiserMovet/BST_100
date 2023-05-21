@@ -1,6 +1,7 @@
-import datetime
+import time
 from typing import List
 from tree import Tree
+import sys
 
 
 def get_add_numbers() -> List[int]:
@@ -18,54 +19,49 @@ def get_check_numbers() -> List[int]:
 
 
 def main() -> None:
-    add_results = []
-    check_results = []
-    len_results = []
-    height_results = []
 
-    add_numbers = get_add_numbers()
-    check_numbers = get_check_numbers()
+    amount = int(sys.argv[1])
+
+    add_numbers = get_add_numbers()[:amount]
+    check_numbers = get_check_numbers()[:amount]
 
 
-    for _ in range(3):
-        bst = Tree()
-        # Add elements
-        start_time = datetime.datetime.now()
-        for i in add_numbers:
-            bst.add(i)
-        end_time = datetime.datetime.now()
-        add_results.append((end_time - start_time).total_seconds())
+    bst = Tree()
+    
+    # Add elements
+    start_time = time.time()
+    for i in add_numbers:
+        bst.add(i)
+    end_time = time.time()
+    print(f"ADD_TEST:{end_time - start_time}")
 
-        # Len elements
-        start_time = datetime.datetime.now()
-        length = bst.length()
-        end_time = datetime.datetime.now()
-        len_results.append((end_time - start_time).total_seconds())
-        print(f"{length=}")
+    # Check elements
+    start_time = time.time()
+    for i in check_numbers:
+        bst.contain(i)
+    end_time = time.time()
+    print(f"CHECK_TEST:{end_time - start_time}")
 
-        # height elements
-        start_time = datetime.datetime.now()
-        height = bst.height()
-        end_time = datetime.datetime.now()
-        height_results.append((end_time - start_time).total_seconds())
-        print(f"{height=}")
+    # Len elements
+    start_time = time.time()
+    for _ in range(10):
+        bst.length()
+    end_time = time.time()
+    print(f"LEN_TEST:{(end_time - start_time)/10}")
 
-        # Check elements
-        start_time = datetime.datetime.now()
-        for i in check_numbers:
-            bst.contain(i)
-        end_time = datetime.datetime.now()
-        check_results.append((end_time - start_time).total_seconds())
 
-    average_add = sum(add_results) / len(add_results)
-    average_check = sum(check_results) / len(check_results)
-    average_len = sum(len_results) / len(len_results)
-    average_height = sum(height_results) / len(height_results)
+    # Height elements
+    start_time = time.time()
+    for _ in range(10):
+        bst.height()
+    end_time = time.time()
+    print(f"HEIGHT_TEST:{(end_time - start_time)/10}")
 
-    print(f"Average add: {average_add:.2f}")
-    print(f"Average check: {average_check:.2f}")
-    print(f"Average len: {average_len:.2f}")
-    print(f"Average height: {average_height:.2f}")
+    print(f"VALIDATION:{bst.length()}:{bst.height()}")
+
+
+
+
 
 
 if __name__ == "__main__":

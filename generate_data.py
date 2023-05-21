@@ -11,8 +11,8 @@ def save_numbers(filename, amount):
 
 
 def main():
-    save_numbers("datasets/small_add.txt", 100)
-    save_numbers("datasets/small_check.txt", 200)
+    save_numbers("datasets/add.txt", 10_000_000)
+    save_numbers("datasets/check.txt", 10_000_000)
 
 
 if __name__ == "__main__":
