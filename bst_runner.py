@@ -3,6 +3,8 @@ from app import BST, Result, ResultCollection
 from multiprocessing import Pool
 from pprint import pprint
 from logger import logger
+import random
+
 
 class BSTCollection:
     PYTHON = BST("Python 3.11.0", Path("BST/python3/run.sh"))
@@ -31,14 +33,15 @@ def run(bst: BST, amount:int) -> Result:
 def main():
     arg_coll = []
     for bst in BSTCollection.get_all():
-        for amount in [20, 40, 500]:
-            for _ in range(1):
+        for amount in [100, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]:
+            for _ in range(3):
                 arg_coll.append((bst, amount))
-
-    with Pool() as pool:
+    random.shuffle(arg_coll)
+    with Pool(processes=7) as pool:
         results = pool.starmap(run, arg_coll)
     results = ResultCollection(results)
     results.plot_all()
+    results.to_json()
     pass
 
 if __name__ == "__main__":

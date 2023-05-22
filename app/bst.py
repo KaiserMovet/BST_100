@@ -13,4 +13,6 @@ class BST:
     def run(self, amount=10_000_000) -> Result:
         output = subprocess.run([self.path, str(amount)], text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         result = output.stdout
+        if output.stderr:
+            logger.warning(F"{self.name} return some warnings:\n{output.stderr}")
         return Result.FROM_RESULT(self.name, amount, result)
