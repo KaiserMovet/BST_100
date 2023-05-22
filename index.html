@@ -3,14 +3,26 @@
 
 <head>
     <title>Scatter Plot</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <canvas id="addingChart"></canvas>
-    <canvas id="checkingChart"></canvas>
-    <canvas id="lenChart"></canvas>
-    <canvas id="heightChart"></canvas>
+    <h1>BST Performance Charts</h1>
+    <div class="container">
+        <div class="chart-container">
+            <canvas id="addingChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="checkingChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="lenChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="heightChart"></canvas>
+        </div>
+    </div>
 
     <script src="web_app.js"></script>
 </body>
