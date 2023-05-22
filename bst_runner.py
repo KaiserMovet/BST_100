@@ -33,11 +33,11 @@ def run(bst: BST, amount:int) -> Result:
 def main():
     arg_coll = []
     for bst in BSTCollection.get_all():
-        for amount in [100, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]:
+        for amount in [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]:
             for _ in range(3):
                 arg_coll.append((bst, amount))
     random.shuffle(arg_coll)
-    with Pool(processes=7) as pool:
+    with Pool(processes=5) as pool:
         results = pool.starmap(run, arg_coll)
     results = ResultCollection(results)
     results.plot_all()
