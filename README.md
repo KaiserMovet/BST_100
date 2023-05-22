@@ -59,6 +59,11 @@ The following tests were conducted:
 
 Here are the performance test results for each implementation:
 
+![Adding elements](./results/add.jpg)
+![Checking elements](./results/check.jpg)
+![Counting height of BST](./results/height.jpg)
+![Counting elements](./results/len.jpg)
+
 | Language | Version | Add Time (s) | Contains Time (s) | Count Elements Time (s) | Height Time (s) |
 | -------- | ------- | ------------ | ----------------- | ----------------------- | --------------- |
 | Python   | 3.11.0  | 45.12        | 54.78             | 2.26                    | 2.69            |
