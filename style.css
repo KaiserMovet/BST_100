@@ -2,13 +2,13 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     padding: 50px;
+    padding-top: 10px;
     color: #333;
 }
 
 canvas {
-    margin: 20px 0;
     width: 100%;
-    max-width: 800px;
+
     height: auto;
 }
 
@@ -18,14 +18,12 @@ h1 {
 }
 
 .container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
 }
 
 .chart-container {
-    flex: 1 1 400px;
-    margin: 10px;
     padding: 20px;
     border-radius: 5px;
     background-color: #fff;
