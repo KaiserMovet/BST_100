@@ -64,13 +64,7 @@ Here are the performance test results for each implementation:
 ![Counting height of BST](./results/height.jpg)
 ![Counting elements](./results/len.jpg)
 
-| Language | Version | Add Time (s) | Contains Time (s) | Count Elements Time (s) | Height Time (s) |
-| -------- | ------- | ------------ | ----------------- | ----------------------- | --------------- |
-| Python   | 3.11.0  | 45.12        | 54.78             | 2.26                    | 2.69            |
-| C++      | gcc 12  | 8.01         | 9.55              | 0.38                    | 0.51            |
-| C        | c99     | 7.33         | 9.00              | 0.00                    | 0.00            |
-| Lua      | 5.4.3   | 41.89        | 48.37             | 2.95                    | 3.36            |
-| Rust     | 1.67    | 11.24        | 13.04             | 0.59                    | 0.59            |
+[Here](https://kaisermovet.github.io/BST_100/) you can find more details
 
 ## Requirements
 
