@@ -20,9 +20,9 @@ class Result:
     height: float
     validation: tuple
 
-    # def __post_init__(self) -> None:
-    #     if self.validation != ("5000000", "57"):
-    #         raise ResultValidation(F"Current validation is {self.validation}")
+    def __post_init__(self) -> None:
+        if int(self.validation[0]) != self.amount:
+            raise ResultValidation(F"Current validation is {self.validation}")
 
     def asdict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -134,17 +134,22 @@ class ResultCollection:
         self.plot_height()
         self.plot_len()
 
-    def to_json(self)->None:
+    def to_json(self, merge_with_existing:bool=False)->None:
         temp_data = {}
         for name in self.data.keys():
             temp_data[name] = {}
             for amount in self.data[name].keys():
                 temp_data[name][amount] = self.data[name][amount].asdict()
         
+        if merge_with_existing:
+            with open('results.json', 'r') as fp:
+                actual_data = json.load(fp)
+                actual_data.update(temp_data)
+                temp_data = actual_data
+        
         with open('results.json', 'w') as fp:
             json.dump(temp_data, fp)
 
 
-    
     def __repr__(self):
         return repr(self.data)

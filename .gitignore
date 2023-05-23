@@ -2,3 +2,6 @@
 env
 *.pyc
 BST/rust/main
+BST/c#/bin/
+BST/c#/obj/
+
