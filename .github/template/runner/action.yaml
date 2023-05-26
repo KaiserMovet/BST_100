@@ -22,12 +22,13 @@ runs:
           mkdir /datasets
           cp datasets/* /datasets
           touch /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
-          cd BST/${{ inputs.folder }}
     - name: Build
+      working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
       shell: bash
       run: |
           ${{ inputs.build_command }}
     - name: Run
+      working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
       shell: bash
       run: |
           ${{ inputs.run_command }} ${{ matrix.amount }} > /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
