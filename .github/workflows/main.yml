@@ -26,7 +26,7 @@ jobs:
           mkdir /datasets
           cp datasets/* /datasets
           ls /datasets
-          cd BST/c
+          cd BST/python
           python main.py $amount > /temp/output-${{ github.run_id }}.txt
       - name: Upload Output
         uses: actions/upload-artifact@v3
