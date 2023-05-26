@@ -24,14 +24,14 @@ runs:
           touch /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
           cd BST/${{ inputs.folder }}
     - name: Build
-          shell: bash
-          run: |
-              ${{ inputs.build_command }}
+      shell: bash
+      run: |
+          ${{ inputs.build_command }}
     - name: Run
-          shell: bash
-          run: |
-              ${{ inputs.run_command }} ${{ matrix.amount }} > /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
-              cat /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+      shell: bash
+      run: |
+          ${{ inputs.run_command }} ${{ matrix.amount }} > /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+          cat /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
     - name: Upload Output
       uses: actions/upload-artifact@v3
       with:
