@@ -22,17 +22,17 @@ jobs:
         uses: actions/checkout@v2
       - name: Compile and Run
         run: |
-          mkdir /temp
+          mkdir -p ${{ github.workspace }}/temp
           mkdir /datasets
           cp datasets/* /datasets
           ls /datasets
           cd BST/python3
-          python main.py ${{ matrix.amount }} > /temp/output-${{ github.run_id }}-${{ matrix.version }}.txt
+          python main.py ${{ matrix.amount }} >  ${{ github.workspace }}/temp/output-${{ github.run_id }}-${{ matrix.version }}.txt
       - name: Upload Output
         uses: actions/upload-artifact@v3
         with:
           name: output-${{ github.run_id }}-${{ matrix.amount }}
-          path: /temp/output-${{ github.run_id }}-${{ matrix.version }}.txt
+          path:  ${{ github.workspace }}/temp/output-${{ github.run_id }}-${{ matrix.version }}.txt
 
   summary:
    needs: runner
@@ -41,15 +41,15 @@ jobs:
      - name: Checkout code
        uses: actions/checkout@v2
      - name: Make temp folder
-       run: mkdir /temp
+       run: mkdir  ${{ github.workspace }}/temp
      - name: Download Output
        uses: actions/download-artifact@v3
        with:
-         path: /temp
+         path:  ${{ github.workspace }}/temp
      - name: Generate Summary
        run: |
-         ls /temp
-         cat *
+         ls  ${{ github.workspace }}/temp
+         cat  ${{ github.workspace }}/temp/*
     #  - name: Commit and Push
     #    run: |
     #      git config --global user.name 'GitHub Actions'
