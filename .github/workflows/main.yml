@@ -22,8 +22,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Compile and Run
         run: |
+          pwd
+          ls
           cd BST/c
-          mkdir -p /temp
           g++ -std=c99 -o main.out main.c node.c tree.c
           ./main.out $amount > /temp/output-${{ github.run_id }}.txt
       - name: Upload Output
