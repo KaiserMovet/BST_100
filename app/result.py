@@ -1,9 +1,11 @@
-from dataclasses import dataclass, asdict
-from typing import Callable, List, Dict, Any
-from collections import defaultdict
-import matplotlib.pyplot as plt
-from logger import logger
 import json
+from collections import defaultdict
+from dataclasses import asdict, dataclass
+from typing import Any, Callable, Dict, List
+
+import matplotlib.pyplot as plt
+
+from logger import logger
 
 
 class ResultValidation(Exception):
@@ -22,18 +24,30 @@ class Result:
 
     def __post_init__(self) -> None:
         if int(self.validation[0]) != self.amount:
-            raise ResultValidation(F"Current validation is {self.validation}")
+            raise ResultValidation(
+                f"Current validation is {self.validation[0]} and it should be {self.amount}"
+            )
 
     def asdict(self) -> Dict[str, Any]:
         return asdict(self)
 
     @property
     def has_none(self):
-        return any([key is None for key in [self.add, self.check, self.len, self.height, self.validation]])
-
+        return any(
+            [
+                key is None
+                for key in [
+                    self.add,
+                    self.check,
+                    self.len,
+                    self.height,
+                    self.validation,
+                ]
+            ]
+        )
 
     @staticmethod
-    def FROM_RESULT(name:str, amount:int, result: str) -> "Result":
+    def FROM_RESULT(name: str, amount: int, result: str) -> "Result":
         add = None
         check = None
         leng = None
@@ -51,15 +65,19 @@ class Result:
             if "VALIDATION" in line:
                 val = (int(line.split(":")[1]), int(line.split(":")[2]))
         if any([key is None for key in [add, check, leng, height, val]]):
-            logger.error(F"Cannot find all keys in {name}:{amount}. Full output:\n{result}")
-        return Result(name=name,
-                      amount=amount,
-                      add=add, #type: ignore
-                      check=check, #type: ignore
-                      height=height, #type: ignore
-                      len=leng, #type: ignore
-                      validation=val, #type: ignore
-                    )
+            logger.error(
+                f"Cannot find all keys in {name}:{amount}. Full output:\n{result}"
+            )
+        return Result(
+            name=name,
+            amount=amount,
+            add=add,  # type: ignore
+            check=check,  # type: ignore
+            height=height,  # type: ignore
+            len=leng,  # type: ignore
+            validation=val,  # type: ignore
+        )
+
     @staticmethod
     def FROM_AVG(results: List["Result"]) -> "Result":
         res_len = len(results)
@@ -70,22 +88,28 @@ class Result:
         for result in results:
             if result.has_none:
                 res_len -= 1
-                logger.warning(F"Ommiting result in {results[0].name}:{results[0].amount}")
+                logger.warning(
+                    f"Ommiting result in {results[0].name}:{results[0].amount}"
+                )
                 continue
             add += result.add
             check += result.check
             leng += result.len
             height += result.height
-        if res_len==1:
-            logger.critical(f"Cannot get average result for {results[0].name}:{results[0].amount}")
-            raise ResultValidation(f"Cannot get average result for {results[0].name}:{results[0].amount}")
+        if res_len == 1:
+            logger.critical(
+                f"Cannot get average result for {results[0].name}:{results[0].amount}"
+            )
+            raise ResultValidation(
+                f"Cannot get average result for {results[0].name}:{results[0].amount}"
+            )
         return Result(
-            name = results[0].name,
-            amount = results[0].amount,
-            add=add/res_len,
-            check=check/res_len,
-            len=leng/res_len,
-            height=height/res_len,
+            name=results[0].name,
+            amount=results[0].amount,
+            add=add / res_len,
+            check=check / res_len,
+            len=leng / res_len,
+            height=height / res_len,
             validation=results[0].validation,
         )
 
@@ -95,27 +119,31 @@ class ResultCollection:
         temp_data = defaultdict(lambda: defaultdict(list))
         for result in results:
             temp_data[result.name][result.amount].append(result)
-        
+
         self.data = defaultdict(lambda: {})
         for name in sorted(temp_data.keys()):
             for amount in sorted(temp_data[name].keys()):
-                self.data[name][amount] = Result.FROM_AVG(temp_data[name][amount])
+                self.data[name][amount] = Result.FROM_AVG(
+                    temp_data[name][amount]
+                )
 
-    def _plot(self, title: str, picture_name:str, result_func: Callable) -> None:
+    def _plot(
+        self, title: str, picture_name: str, result_func: Callable
+    ) -> None:
         for key, values in self.data.items():
             keys = list(values.keys())
             add_values = [result_func(result) for result in values.values()]
 
             plt.plot(keys, add_values, label=key)
             plt.scatter(keys, add_values)
-            
-        plt.xlabel('Amount of elements in BST')
-        plt.ylabel('Time (s)')
+
+        plt.xlabel("Amount of elements in BST")
+        plt.ylabel("Time (s)")
         plt.title(title)
         plt.legend()
-        plt.savefig(f'./results/{picture_name}.jpg')
+        plt.savefig(f"./results/{picture_name}.jpg")
         plt.clf()
-        
+
     def plot_add(self) -> None:
         self._plot("Adding elements", "add", lambda x: x.add)
 
@@ -127,29 +155,28 @@ class ResultCollection:
 
     def plot_len(self) -> None:
         self._plot("Counting elements", "len", lambda x: x.len)
-    
+
     def plot_all(self) -> None:
         self.plot_add()
         self.plot_check()
         self.plot_height()
         self.plot_len()
 
-    def to_json(self, merge_with_existing:bool=False)->None:
+    def to_json(self, merge_with_existing: bool = False) -> None:
         temp_data = {}
         for name in self.data.keys():
             temp_data[name] = {}
             for amount in self.data[name].keys():
                 temp_data[name][amount] = self.data[name][amount].asdict()
-        
+
         if merge_with_existing:
-            with open('results.json', 'r') as fp:
+            with open("results.json", "r") as fp:
                 actual_data = json.load(fp)
                 actual_data.update(temp_data)
                 temp_data = actual_data
-        
-        with open('results.json', 'w') as fp:
-            json.dump(temp_data, fp)
 
+        with open("results.json", "w") as fp:
+            json.dump(temp_data, fp)
 
     def __repr__(self):
         return repr(self.data)

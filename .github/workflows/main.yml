@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   runner:
     runs-on: ubuntu-latest
     strategy:
@@ -23,34 +22,35 @@ jobs:
           run_command: python main.py
 
   summary:
-   needs: runner
-   runs-on: ubuntu-latest
-   steps:
-     - name: Checkout code
-       uses: actions/checkout@v3
-     - name: Download Output
-       uses: actions/download-artifact@v3
-       with:
-         path:  ${{ github.workspace }}/temp
-     - name: Generate Summary
-       run: |
-         ls ${{ github.workspace }}/temp
-         echo rrr
-         ls ${{ github.workspace }}/temp/results
-         echo rrr
-         cat ${{ github.workspace }}/temp/results/*
-         date > results.json
-       working-directory: ${{ github.workspace }}
-     - name: Add results.json
-       run: |
+    needs: runner
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Download Output
+        uses: actions/download-artifact@v3
+        with:
+          path: ${{ github.workspace }}/temp
+      - name: Generate Summary
+        run: |
+          ls ${{ github.workspace }}/temp
+          echo rrr
+          ls ${{ github.workspace }}/temp/results
+          echo rrr
+          cat ${{ github.workspace }}/temp/results/*
+          date > results.json
+        working-directory: ${{ github.workspace }}
+      - name: Add results.json
+        run: |
           git add results.json
+          git add results/*
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m 'Upload results.json'
-     - name: Upload results.json
-       uses: ad-m/github-push-action@v0.6.0
-       with:
-         github_token: ${{ secrets.GITHUB_TOKEN }}
-         branch: master
-         force: true
-         directory: .
+          git commit -m 'Upload new results'
+      - name: Upload results.json
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: master
+          force: true
+          directory: .
