@@ -4,7 +4,7 @@ from app import Result, ResultCollection
 
 
 def main():
-    results_path = Path("temp/results").resolve()
+    results_path = Path("/temp/results").resolve()
     results = []
     for result_txt in results_path.glob("*.txt"):
         file_name = result_txt.stem

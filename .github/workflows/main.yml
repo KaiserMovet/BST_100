@@ -33,12 +33,7 @@ jobs:
           path: ${{ github.workspace }}/temp
       - name: Generate Summary
         run: |
-          ls ${{ github.workspace }}/temp
-          echo rrr
-          ls ${{ github.workspace }}/temp/results
-          echo rrr
-          cat ${{ github.workspace }}/temp/results/*
-          date > results.json
+          python pipeline_analysis.py
         working-directory: ${{ github.workspace }}
       - name: Add results.json
         run: |
