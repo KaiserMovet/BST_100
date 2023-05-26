@@ -1,0 +1,55 @@
+name: BST Workflow
+
+on: [push, pull_request]
+
+jobs:
+  startup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+  runner:
+    needs: startup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [10, 20, 40]
+    container:
+      image: gcc:12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Compile and Run
+        run: |
+          cd app
+          mkdir -p /temp
+          g++ -std=c99 -o main.out main.c node.c tree.c
+          ./main.out $amount > /temp/output-${{ github.run_id }}.txt
+      - name: Upload Output
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-${{ github.run_id }}-${{ matrix.version }}
+          path: /temp/output-${{ github.run_id }}-${{ matrix.version }}.txt
+
+  #summary:
+  #  needs: runner
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Checkout code
+  #      uses: actions/checkout@v2
+  #    - name: Download Output
+  #      uses: actions/download-artifact@v2
+  #      with:
+  #        name: output-${{ github.run_id }}
+  #        path: /temp
+  #    - name: Generate Summary
+  #      run: |
+  #        python summary.py /temp/output-${{ github.run_id }}.txt
+  #    - name: Commit and Push
+  #      run: |
+  #        git config --global user.name 'GitHub Actions'
+  #        git config --global user.email 'github-actions@github.com'
+  #        git add .
+  #        git commit -m "Add summary"
+  #        git push
