@@ -36,6 +36,7 @@ jobs:
           python -m pip install matplotlib
       - name: Generate Summary
         run: |
+          ls ${{ github.workspace }}/temp/results
           python pipeline_analysis.py ${{ github.workspace }}/temp/results
         working-directory: ${{ github.workspace }}
       - name: Add results.json
