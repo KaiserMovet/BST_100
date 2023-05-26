@@ -16,7 +16,7 @@ jobs:
       matrix:
         amount: [10, 20, 40]
     container:
-      image: gcc:12
+      image: python:3.11
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -27,8 +27,7 @@ jobs:
           cp datasets/* /datasets
           ls /datasets
           cd BST/c
-          g++ -std=c99 -o main.out main.c node.c tree.c
-          ./main.out $amount > /temp/output-${{ github.run_id }}.txt
+          python main.py $amount > /temp/output-${{ github.run_id }}.txt
       - name: Upload Output
         uses: actions/upload-artifact@v3
         with:
