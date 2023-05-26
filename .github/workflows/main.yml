@@ -33,7 +33,9 @@ jobs:
        with:
          path:  ${{ github.workspace }}/temp
      - name: Generate Summary
-       run: date > results.json
+       run: |
+         cat ${{ github.workspace }}/temp/*
+         date > results.json
        working-directory: ${{ github.workspace }}
      - name: Add results.json
        run: |
