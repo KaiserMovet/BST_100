@@ -47,9 +47,8 @@ jobs:
        with:
          path:  ${{ github.workspace }}/temp
      - name: Generate Summary
-       run: |
-         ls  ${{ github.workspace }}/temp
-         cat  ${{ github.workspace }}/temp/*
+       run: ls -R
+       working-directory: ${{ github.workspace }}/temp
     #  - name: Commit and Push
     #    run: |
     #      git config --global user.name 'GitHub Actions'
