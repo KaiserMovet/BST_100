@@ -40,8 +40,8 @@ jobs:
    steps:
      - name: Checkout code
        uses: actions/checkout@v2
-     - name: Make temp folder
-       run: mkdir  ${{ github.workspace }}/temp
+    #  - name: Make temp folder
+    #    run: mkdir  ${{ github.workspace }}/temp
      - name: Download Output
        uses: actions/download-artifact@v3
        with:
