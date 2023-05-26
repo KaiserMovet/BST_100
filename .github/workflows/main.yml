@@ -20,19 +20,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Compile and Run
-        run: |
-          mkdir -p ${{ github.workspace }}/temp
-          mkdir /datasets
-          cp datasets/* /datasets
-          ls /datasets
-          cd BST/python3
-          python main.py ${{ matrix.amount }} >  ${{ github.workspace }}/temp/output-${{ github.run_id }}-${{ matrix.amount }}.txt
-      - name: Upload Output
-        uses: actions/upload-artifact@v3
+      - name: Run bst
+        uses: ".github/template/runner"
         with:
-          name: output-${{ github.run_id }}-${{ matrix.amount }}.txt
-          path: ${{ github.workspace }}/temp
+          folder: python3
+          run_command: python main.py
 
   summary:
    needs: runner

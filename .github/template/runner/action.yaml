@@ -1,0 +1,31 @@
+
+name: runner
+
+# Were we can define the inputs that our action will accept
+inputs:
+  folder:
+    required: true
+  build_command: 
+    required: false
+    default: ''
+  run_command:
+    required: true
+
+runs:
+  using: "composite"
+  # Defining the action steps(Just one step to be simple)
+  steps:
+    - name: Compile and Run
+      run: |
+          mkdir -p ${{ github.workspace }}/temp
+          mkdir /datasets
+          cp datasets/* /datasets
+          ls /datasets
+          cd BST/${{ inputs.folder }}
+          ${{ input.build_command }}
+          ${{ input.run_command }} ${{ matrix.amount }} >  ${{ github.workspace }}/temp/output-${{ inputs.folder }}-${{ matrix.amount }}.txt
+    - name: Upload Output
+      uses: actions/upload-artifact@v3
+      with:
+        name: output-${{ inputs.folder }}-${{ matrix.amount }}.txt
+        path: ${{ github.workspace }}/temp
