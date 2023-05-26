@@ -29,5 +29,5 @@ runs:
     - name: Upload Output
       uses: actions/upload-artifact@v3
       with:
-        name: output-${{ inputs.folder }}-${{ matrix.amount }}.txt
+        name: results
         path: /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
