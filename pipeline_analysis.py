@@ -19,7 +19,6 @@ def main():
         results.append(result)
 
     rc = ResultCollection(results)
-    print(list(rc.data.keys()))
     rc.plot_all()
     rc.to_json(merge_with_existing=False)
 
