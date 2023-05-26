@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [10]
-        attempt: [1, 2]
+        amount: [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]
+        attempt: [1, 2, 3]
     container:
       image: python:3.11
     steps:
@@ -44,8 +44,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [10]
-        attempt: [1, 2]
+        amount: [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]
+        attempt: [1, 2, 3]
     container:
       image: gcc:12
     steps:
@@ -62,8 +62,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [10]
-        attempt: [1, 2]
+        amount: [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]
+        attempt: [1, 2, 3]
     container:
       image: mcr.microsoft.com/dotnet/sdk:5.0
     steps:
@@ -79,8 +79,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [10]
-        attempt: [1, 2]
+        amount: [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]
+        attempt: [1, 2, 3]
     container:
       image: nickblah/lua:5
     steps:
@@ -96,8 +96,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [10]
-        attempt: [1, 2]
+        amount: [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]
+        attempt: [1, 2, 3]
     container:
       image: rust:1.67
     steps:
