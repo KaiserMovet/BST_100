@@ -23,9 +23,9 @@ runs:
           cp datasets/* /datasets
           cd BST/${{ inputs.folder }}
           ${{ inputs.build_command }}
-          ${{ inputs.run_command }} ${{ matrix.amount }} >  ${{ vars.GITHUB_WORKSPACE }}/temp/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+          ${{ inputs.run_command }} ${{ matrix.amount }} >  ${{ env.GITHUB_WORKSPACE }}/temp/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
     - name: Upload Output
       uses: actions/upload-artifact@v3
       with:
         name: output-${{ inputs.folder }}-${{ matrix.amount }}.txt
-        path: ${{ vars.GITHUB_WORKSPACE }}/temp/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+        path: ${{ env.GITHUB_WORKSPACE }}/temp/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
