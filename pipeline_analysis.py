@@ -4,7 +4,7 @@ from app import Result, ResultCollection
 
 
 def main():
-    results_path = Path("/temp/results").resolve()
+    results_path = Path(sys.argv[1]).resolve()
     results = []
     print(f"Checking path {results_path}")
 
