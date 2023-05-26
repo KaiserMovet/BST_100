@@ -3,14 +3,14 @@ name: BST Workflow
 on: [push, pull_request]
 
 jobs:
-  startup:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # startup:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
   runner:
-    needs: startup
+    # needs: startup
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Compile and Run
         run: |
-          mkdir temp
+          mkdir /temp
           cd BST/c
           g++ -std=c99 -o main.out main.c node.c tree.c
           ./main.out $amount > /temp/output-${{ github.run_id }}.txt
