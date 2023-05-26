@@ -29,4 +29,4 @@ runs:
       uses: actions/upload-artifact@v3
       with:
         name: output-${{ inputs.folder }}-${{ matrix.amount }}.txt
-        path: ${{ github.workspace }}/temp
+        path: ${{ github.workspace }}/temp/output-${{ inputs.folder }}-${{ matrix.amount }}--${{ matrix.attempt }}.txt
