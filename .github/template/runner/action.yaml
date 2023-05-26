@@ -23,6 +23,7 @@ runs:
           cp datasets/* /datasets
           cd BST/${{ inputs.folder }}
           ${{ inputs.build_command }}
+          touch ${{ env.GITHUB_WORKSPACE }}/res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
           ${{ inputs.run_command }} ${{ matrix.amount }} > ${{ env.GITHUB_WORKSPACE }}/res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
           cat ${{ env.GITHUB_WORKSPACE }}/res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
     - name: Upload Output
