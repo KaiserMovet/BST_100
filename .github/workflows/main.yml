@@ -4,12 +4,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  runner:
+  
+  python3:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [10, 20, 40]
-        attempt: [1, 2, 3]
+        amount: [10]
+        attempt: [1, 2]
     container:
       image: python:3.11
     steps:
@@ -21,8 +22,96 @@ jobs:
           folder: python3
           run_command: python main.py
 
+  c:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [10]
+        attempt: [1, 2]
+    container:
+      image: gcc:12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: c
+          build_command: g++ -std=c99 -o main.out main.c node.c tree.c
+          run_command: ./main.out
+
+  cpp:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [10]
+        attempt: [1, 2]
+    container:
+      image: gcc:12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: c++
+          build_command: g++ -o main.out main.cpp tree.cpp node.cpp
+          run_command: ./main.out
+
+  cs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [10]
+        attempt: [1, 2]
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:5.0
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: 'c#'
+          run_command: dotnet run
+
+  lua:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [10]
+        attempt: [1, 2]
+    container:
+      image: nickblah/lua:5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: 'lua'
+          run_command: lua main.lua
+
+  rust:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [10]
+        attempt: [1, 2]
+    container:
+      image: rust:1.67
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: 'rust'
+          build_command: rustc main.rs
+          run_command: ./main
+
   summary:
-    needs: runner
+    needs: [python3, c, cpp, cs, lua, rust]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
