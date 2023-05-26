@@ -1,16 +1,11 @@
 name: BST Workflow
 
-on: [push, pull_request]
+on:
+  workflow_dispatch:
 
 jobs:
-  # startup:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
 
   runner:
-    # needs: startup
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -20,7 +15,7 @@ jobs:
       image: python:3.11
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Run bst
         uses: "./.github/template/runner"
         with:
@@ -32,16 +27,27 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - name: Checkout code
-       uses: actions/checkout@v2
-    #  - name: Make temp folder
-    #    run: mkdir  ${{ github.workspace }}/temp
+       uses: actions/checkout@v3
      - name: Download Output
        uses: actions/download-artifact@v3
        with:
          path:  ${{ github.workspace }}/temp
      - name: Generate Summary
-       run: ls -R
-       working-directory: ${{ github.workspace }}/temp
+       run: touch results.json
+       working-directory: ${{ github.workspace }}
+     - name: Add results.json
+       run: |
+          git add results.json
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m 'Upload results.json'
+     - name: Upload results.json
+       uses: ad-m/github-push-action@v0.6.0
+       with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         branch: master
+         force: true
+         directory: .
     #  - name: Commit and Push
     #    run: |
     #      git config --global user.name 'GitHub Actions'
