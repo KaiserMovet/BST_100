@@ -30,13 +30,13 @@ jobs:
       - name: Download Output
         uses: actions/download-artifact@v3
         with:
-          path: /res
+          path: ${{ github.workspace }}/temp
       - name: Install dependencies
         run: |
           python -m pip install matplotlib
       - name: Generate Summary
         run: |
-          python pipeline_analysis.py /res/results
+          python pipeline_analysis.py ${{ github.workspace }}/temp
         working-directory: ${{ github.workspace }}
       - name: Add results.json
         run: |
