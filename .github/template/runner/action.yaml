@@ -24,7 +24,7 @@ runs:
           ls /datasets
           cd BST/${{ inputs.folder }}
           ${{ inputs.build_command }}
-          ${{ inputs.run_command }} ${{ matrix.amount }} >  ${{ github.workspace }}/temp/output-${{ inputs.folder }}-${{ matrix.amount }}.txt
+          ${{ inputs.run_command }} ${{ matrix.amount }} >  ${{ github.workspace }}/temp/output-${{ inputs.folder }}-${{ matrix.amount }}--${{ matrix.attempt }}.txt
     - name: Upload Output
       uses: actions/upload-artifact@v3
       with:

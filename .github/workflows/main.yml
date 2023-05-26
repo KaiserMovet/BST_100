@@ -15,6 +15,7 @@ jobs:
     strategy:
       matrix:
         amount: [10, 20, 40]
+        attempt: [1, 2, 3]
     container:
       image: python:3.11
     steps:
