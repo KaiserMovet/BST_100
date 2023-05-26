@@ -111,7 +111,7 @@ jobs:
           run_command: ./main
 
   summary:
-    needs: [python3, c, cpp, cs, lua, rust]
+    needs: [python3, cpp, cs, lua, rust]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
