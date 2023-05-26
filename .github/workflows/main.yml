@@ -21,7 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run bst
-        uses: ".github/template/runner"
+        uses: "./.github/template/runner"
         with:
           folder: python3
           run_command: python main.py
