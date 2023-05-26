@@ -18,16 +18,16 @@ runs:
     - name: Compile and Run
       shell: bash
       run: |
-          mkdir -p ${{ github.workspace }}/res
+          mkdir /res
           mkdir /datasets
           cp datasets/* /datasets
+          /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
           cd BST/${{ inputs.folder }}
           ${{ inputs.build_command }}
-          touch ${{ env.GITHUB_WORKSPACE }}/res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
-          ${{ inputs.run_command }} ${{ matrix.amount }} > ${{ env.GITHUB_WORKSPACE }}/res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
-          cat ${{ env.GITHUB_WORKSPACE }}/res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+          ${{ inputs.run_command }} ${{ matrix.amount }} > /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+          cat /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
     - name: Upload Output
       uses: actions/upload-artifact@v3
       with:
         name: output-${{ inputs.folder }}-${{ matrix.amount }}.txt
-        path: ${{ env.GITHUB_WORKSPACE }}/res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+        path: /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
