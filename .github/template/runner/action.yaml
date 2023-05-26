@@ -21,7 +21,7 @@ runs:
           mkdir /res
           mkdir /datasets
           cp datasets/* /datasets
-          /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+          touch /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
           cd BST/${{ inputs.folder }}
           ${{ inputs.build_command }}
           ${{ inputs.run_command }} ${{ matrix.amount }} > /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
