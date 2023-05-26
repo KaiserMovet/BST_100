@@ -31,6 +31,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: ${{ github.workspace }}/temp
+      - name: Install dependencies
+        run: |
+          python -m pip install matplotlib
       - name: Generate Summary
         run: |
           python pipeline_analysis.py
