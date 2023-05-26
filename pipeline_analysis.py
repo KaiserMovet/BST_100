@@ -6,8 +6,11 @@ from app import Result, ResultCollection
 def main():
     results_path = Path("/temp/results").resolve()
     results = []
+    print(f"Checking path {results_path}")
+
     for result_txt in results_path.glob("*.txt"):
         file_name = result_txt.stem
+        print(f"Loading {file_name}")
         lan_name = file_name.split("-")[1]
         amount = int(file_name.split("-")[2])
         content = result_txt.read_text()
@@ -15,6 +18,7 @@ def main():
         results.append(result)
 
     rc = ResultCollection(results)
+    print(list(rc.data.keys()))
     rc.plot_all()
     rc.to_json(merge_with_existing=False)
 
