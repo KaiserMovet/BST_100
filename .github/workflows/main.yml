@@ -27,11 +27,11 @@ jobs:
           cp datasets/* /datasets
           ls /datasets
           cd BST/python3
-          python main.py $amount > /temp/output-${{ github.run_id }}.txt
+          python main.py ${{ matrix.amount }} > /temp/output-${{ github.run_id }}.txt
       - name: Upload Output
         uses: actions/upload-artifact@v3
         with:
-          name: output-${{ github.run_id }}-${{ matrix.version }}
+          name: output-${{ github.run_id }}-${{ matrix.amount }}
           path: /temp/output-${{ github.run_id }}-${{ matrix.version }}.txt
 
   #summary:
