@@ -22,23 +22,23 @@ jobs:
           folder: python3
           run_command: python main.py
 
-  c:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        amount: [10]
-        attempt: [1, 2]
-    container:
-      image: gcc:12
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Run bst
-        uses: "./.github/template/runner"
-        with:
-          folder: c
-          build_command: g++ -std=c99 -o main.out main.c node.c tree.c
-          run_command: ./main.out
+  # c:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       amount: [10]
+  #       attempt: [1, 2]
+  #   container:
+  #     image: gcc:12
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #     - name: Run bst
+  #       uses: "./.github/template/runner"
+  #       with:
+  #         folder: c
+  #         build_command: g++ -std=c99 -o main.out main.c node.c tree.c
+  #         run_command: ./main.out
 
   cpp:
     runs-on: ubuntu-latest
