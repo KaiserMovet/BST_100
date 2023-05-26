@@ -16,6 +16,7 @@ runs:
   # Defining the action steps(Just one step to be simple)
   steps:
     - name: Compile and Run
+      shell: bash
       run: |
           mkdir -p ${{ github.workspace }}/temp
           mkdir /datasets
