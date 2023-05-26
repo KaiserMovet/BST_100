@@ -27,12 +27,11 @@ runs:
           shell: bash
           run: |
               ${{ inputs.build_command }}
-              ${{ inputs.run_command }} ${{ matrix.amount }} > /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
-              cat /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
     - name: Run
           shell: bash
           run: |
               ${{ inputs.run_command }} ${{ matrix.amount }} > /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+              cat /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
     - name: Upload Output
       uses: actions/upload-artifact@v3
       with:
