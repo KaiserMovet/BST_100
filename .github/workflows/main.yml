@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]
+        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
         attempt: [1, 2, 3]
     container:
       image: python:3.11
@@ -22,29 +22,29 @@ jobs:
           folder: python3
           run_command: python main.py
 
-  # c:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       amount: [10]
-  #       attempt: [1, 2]
-  #   container:
-  #     image: gcc:12
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
-  #     - name: Run bst
-  #       uses: "./.github/template/runner"
-  #       with:
-  #         folder: c
-  #         build_command: g++ -std=c99 -o main.out main.c node.c tree.c
-  #         run_command: ./main.out
+  c:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
+        attempt: [1, 2, 3]
+    container:
+      image: gcc:12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: c
+          build_command: g++ -std=c99 -o main.out main.c node.c tree.c
+          run_command: ./main.out
 
   cpp:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]
+        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
         attempt: [1, 2, 3]
     container:
       image: gcc:12
@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]
+        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
         attempt: [1, 2, 3]
     container:
       image: mcr.microsoft.com/dotnet/sdk:5.0
@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]
+        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
         attempt: [1, 2, 3]
     container:
       image: nickblah/lua:5
@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1_000,10_000, 100_000, 1_000_000, 2_000_000, 3_000_000, 4_000_000, 5_000_000,6_000_000,7_000_000,8_000_000,9_000_000,10_000_000]
+        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
         attempt: [1, 2, 3]
     container:
       image: rust:1.67
