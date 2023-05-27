@@ -1,4 +1,5 @@
 import json
+import re
 from collections import defaultdict
 from dataclasses import asdict, dataclass
 from typing import Any, Callable, Dict, List
@@ -6,6 +7,28 @@ from typing import Any, Callable, Dict, List
 import matplotlib.pyplot as plt
 
 from logger import logger
+
+
+def convert_to_seconds(s) -> float:
+    # Extract the numeric part of the string
+    number_str = re.findall(r"[\d\.]+", s)[0]
+
+    # Convert the numeric part to a float
+    number = float(number_str)
+
+    # Convert from microseconds to seconds
+    if "µs" in s:
+        number *= 1e-6
+    elif "ms" in s:
+        number *= 1e-3
+    elif "s" in s:
+        number *= 1
+    elif "m" in s:
+        number *= 60
+    elif "h" in s:
+        number *= 3600
+
+    return number
 
 
 class ResultValidation(Exception):
@@ -55,13 +78,13 @@ class Result:
         val = None
         for line in result.splitlines():
             if "ADD_TEST" in line:
-                add = float(line.split(":")[1])
+                add = convert_to_seconds(line.split(":")[1])
             if "CHECK_TEST" in line:
-                check = float(line.split(":")[1])
+                check = convert_to_seconds(line.split(":")[1])
             if "LEN_TEST" in line:
-                leng = float(line.split(":")[1])
+                leng = convert_to_seconds(line.split(":")[1])
             if "HEIGHT_TEST" in line:
-                height = float(line.split(":")[1])
+                height = convert_to_seconds(line.split(":")[1])
             if "VALIDATION" in line:
                 val = (int(line.split(":")[1]), int(line.split(":")[2]))
         if any([key is None for key in [add, check, leng, height, val]]):

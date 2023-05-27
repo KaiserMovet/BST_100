@@ -1,8 +1,8 @@
+import sys
 from pathlib import Path
 
 from app import Result, ResultCollection
 
-import sys
 
 def main():
     results_path = Path(sys.argv[1]).resolve()
