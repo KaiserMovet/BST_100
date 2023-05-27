@@ -33,4 +33,5 @@ runs:
         ${{ inputs.run_command }} 100 > /res/output-${{ inputs.folder }}-100.txt
         cat /res/output-${{ inputs.folder }}-100.txt
     - name: Validate file
+      shell: bash
       run: test_lang.sh /res/output-${{ inputs.folder }}-100.txt
