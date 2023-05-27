@@ -40,7 +40,7 @@ func main() {
 		bst.Add(num)
 	}
 	endTime := time.Now()
-	fmt.Printf("ADD_TEST:%.12f\n", endTime.Sub(startTime))
+	fmt.Printf("ADD_TEST:%.12f\n", (endTime.Sub(startTime).Seconds()))
 
 	// Check elements
 	startTime = time.Now()
@@ -48,7 +48,7 @@ func main() {
 		bst.Contain(num)
 	}
 	endTime = time.Now()
-	fmt.Printf("CHECK_TEST:%.12f\n", endTime.Sub(startTime))
+	fmt.Printf("CHECK_TEST:%.12f\n", (endTime.Sub(startTime).Seconds()))
 
 	// Len elements
 	startTime = time.Now()
@@ -56,7 +56,7 @@ func main() {
 		bst.Length()
 	}
 	endTime = time.Now()
-	fmt.Printf("LEN_TEST:%.12f\n", endTime.Sub(startTime).Seconds()/10)
+	fmt.Printf("LEN_TEST:%.12f\n", (endTime.Sub(startTime).Seconds())/10)
 
 	// Height elements
 	startTime = time.Now()
@@ -64,7 +64,7 @@ func main() {
 		bst.Height()
 	}
 	endTime = time.Now()
-	fmt.Printf("HEIGHT_TEST:%.12f\n", endTime.Sub(startTime).Seconds()/10)
+	fmt.Printf("HEIGHT_TEST:%.12f\n", (endTime.Sub(startTime).Seconds())/10)
 
 	fmt.Print("VALIDATION:", bst.Length(), ":", bst.Height(), "\n")
 }
