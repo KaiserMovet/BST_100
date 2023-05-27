@@ -20,7 +20,7 @@ jobs:
         id: changes
         run: |
           git add .github/workflows/main.yaml
-          git add .github/workflows/test_lang.yaml
+          git add .github/workflows/test_lang-*.yaml
           git diff-index --quiet HEAD || echo "::set-output name=changed::true"
       - name: Commit and push changes
         run: |
