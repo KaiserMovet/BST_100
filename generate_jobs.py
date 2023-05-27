@@ -85,9 +85,12 @@ def main():
     # TEST LANGUAGE
     template_test = get_template("test_lang.yaml.j2")
 
-    rendered_template_test = template_test.render(jobs=jobs)
-    with open("./.github/workflows/test_lang.yaml", "w") as f:
-        f.write(rendered_template_test)
+    for job in jobs:
+        rendered_template_test = template_test.render(job=job)
+        with open(
+            f"./.github/workflows/test_lang-{job.language}.yaml", "w"
+        ) as f:
+            f.write(rendered_template_test)
 
 
 if __name__ == "__main__":
