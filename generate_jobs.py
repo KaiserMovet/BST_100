@@ -79,7 +79,7 @@ def main():
     rendered_template_bst = template_bst.render(
         jobs=jobs, amount=amount, attempts=attempts, languages=languages
     )
-    with open("./.github/workflows/main.yml", "w") as f:
+    with open("./.github/workflows/main.yaml", "w") as f:
         f.write(rendered_template_bst)
 
     # TEST LANGUAGE
