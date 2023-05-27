@@ -1,0 +1,2 @@
+image_name: nickblah/lua:5
+run_command: lua main.lua

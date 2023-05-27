@@ -1,0 +1,3 @@
+image_name: gcc:12
+build_command: g++ -std=c99 -o main.out main.c node.c tree.c
+run_command: ./main.out

@@ -1,0 +1,3 @@
+image_name: rust:1.67
+build_command: rustc main.rs
+run_command: ./main
