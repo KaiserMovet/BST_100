@@ -4,7 +4,6 @@ from typing import List
 
 import yaml
 from jinja2 import Environment, FileSystemLoader, Template
-from pyparsing import str_type
 from requests import get
 from yaml.loader import SafeLoader
 
