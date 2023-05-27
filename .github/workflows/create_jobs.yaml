@@ -27,4 +27,6 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit -m 'Upload actions files'
           git push origin ${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_KEY }}
         if: steps.changes.outputs.changed == 'true'
