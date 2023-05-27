@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
       - name: Install python requirements
         run: python -m pip install jinja2 pyyaml
       - name: generate yaml files
@@ -24,5 +26,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -m 'Upload actions files'
-          git push
+          git push origin ${{ github.head_ref }}
         if: steps.changes.outputs.changed == 'true'
