@@ -4,12 +4,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  
   python3:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3]
     container:
       image: python:3.11
@@ -26,7 +41,23 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3]
     container:
       image: gcc:12
@@ -44,7 +75,23 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3]
     container:
       image: gcc:12
@@ -62,7 +109,23 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3]
     container:
       image: mcr.microsoft.com/dotnet/sdk:5.0
@@ -72,14 +135,30 @@ jobs:
       - name: Run bst
         uses: "./.github/template/runner"
         with:
-          folder: 'c#'
+          folder: "c#"
           run_command: dotnet run
 
   lua:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3]
     container:
       image: nickblah/lua:5
@@ -89,14 +168,30 @@ jobs:
       - name: Run bst
         uses: "./.github/template/runner"
         with:
-          folder: 'lua'
+          folder: "lua"
           run_command: lua main.lua
 
   rust:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100,1000,10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000,6000000,7000000,8000000,9000000,10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3]
     container:
       image: rust:1.67
@@ -106,9 +201,42 @@ jobs:
       - name: Run bst
         uses: "./.github/template/runner"
         with:
-          folder: 'rust'
+          folder: "rust"
           build_command: rustc main.rs
           run_command: ./main
+
+  golang:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
+        attempt: [1, 2, 3]
+    container:
+      image: golang:1.20.4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: "golang"
+          run_command: go run *.go
 
   summary:
     needs: [python3, c, cpp, cs, lua, rust]

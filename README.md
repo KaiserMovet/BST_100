@@ -6,13 +6,7 @@ This project consists of implementations of BST (Binary Search Tree) in various 
 
 ## Implementations
 
-The project currently includes implementations of BST in the following languages:
-
-- Python3
-- C++
-- C
-- Lua
-
+The project currently includes implementations of BST in multiple languages.
 Each implementation is located in a separate directory in the repository.
 All implementations are based on two classes, Node and Tree.
 

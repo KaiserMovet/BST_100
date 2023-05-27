@@ -1,33 +1,25 @@
+import sys
 import time
 from typing import List
+
 from tree import Tree
-import sys
 
 
-def get_add_numbers() -> List[int]:
-    with open("/datasets/add.txt", "r") as file:
-        content = file.read()
-        numbers = list(map(int, content.split()))
-    return numbers
-
-
-def get_check_numbers() -> List[int]:
-    with open("/datasets/check.txt", "r") as file:
+def get_numbers(path) -> List[int]:
+    with open(path, "r") as file:
         content = file.read()
         numbers = list(map(int, content.split()))
     return numbers
 
 
 def main() -> None:
-
     amount = int(sys.argv[1])
 
-    add_numbers = get_add_numbers()[:amount]
-    check_numbers = get_check_numbers()[:amount]
-
+    add_numbers = get_numbers("/datasets/add.txt")[:amount]
+    check_numbers = get_numbers("/datasets/check.txt")[:amount]
 
     bst = Tree()
-    
+
     # Add elements
     start_time = time.time()
     for i in add_numbers:
@@ -49,7 +41,6 @@ def main() -> None:
     end_time = time.time()
     print(f"LEN_TEST:{(end_time - start_time)/10}")
 
-
     # Height elements
     start_time = time.time()
     for _ in range(10):
@@ -58,10 +49,6 @@ def main() -> None:
     print(f"HEIGHT_TEST:{(end_time - start_time)/10}")
 
     print(f"VALIDATION:{bst.length()}:{bst.height()}")
-
-
-
-
 
 
 if __name__ == "__main__":
