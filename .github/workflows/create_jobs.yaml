@@ -11,6 +11,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
+          token: ${{ secrets.WORKFLOW_KEY }}
       - name: Install python requirements
         run: python -m pip install jinja2 pyyaml
       - name: generate yaml files
@@ -27,6 +28,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit -m 'Upload actions files'
           git push origin ${{ github.head_ref }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_KEY }}
         if: steps.changes.outputs.changed == 'true'
