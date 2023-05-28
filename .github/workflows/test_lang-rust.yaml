@@ -1,0 +1,26 @@
+# THIS FILE IS GENERATED AUTOMATICALLY. IF YOU WANT TO CHANGE THIS, CHANGE
+# 'templates/test_lang.yaml.j2' FILE
+
+name: Test lang - rust
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - './BST/rust/**'
+
+jobs:
+  test_output:
+    runs-on: ubuntu-latest
+    container:
+      image: rust:1.67
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: rust
+          build_command: rustc main.rs
+          run_command: ./main

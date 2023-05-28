@@ -1,38 +1,35 @@
-
 name: runner
 
-# Were we can define the inputs that our action will accept
 inputs:
   folder:
     required: true
-  build_command: 
+  build_command:
     required: false
-    default: ''
+    default: ""
   run_command:
     required: true
 
 runs:
   using: "composite"
-  # Defining the action steps(Just one step to be simple)
   steps:
     - name: Prepare
       shell: bash
       run: |
-          mkdir /res
-          mkdir /datasets
-          cp datasets/* /datasets
-          touch /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+        mkdir /res
+        mkdir /datasets
+        cp datasets/* /datasets
+        touch /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
     - name: Build
       working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
       shell: bash
       run: |
-          ${{ inputs.build_command }}
+        ${{ inputs.build_command }}
     - name: Run
       working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
       shell: bash
       run: |
-          ${{ inputs.run_command }} ${{ matrix.amount }} > /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
-          cat /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+        ${{ inputs.run_command }} ${{ matrix.amount }} > /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
+        cat /res/output-${{ inputs.folder }}-${{ matrix.amount }}-${{ matrix.attempt }}.txt
     - name: Upload Output
       uses: actions/upload-artifact@v3
       with:

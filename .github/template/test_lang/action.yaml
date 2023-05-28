@@ -1,0 +1,40 @@
+name: test_lang
+
+# Were we can define the inputs that our action will accept
+inputs:
+  folder:
+    required: true
+  build_command:
+    required: false
+    default: ""
+  run_command:
+    required: true
+
+runs:
+  using: "composite"
+  # Defining the action steps(Just one step to be simple)
+  steps:
+    - name: Prepare
+      shell: bash
+      run: |
+        mkdir /res
+        mkdir /datasets
+        cp datasets/* /datasets
+        touch /res/output-${{ inputs.folder }}-100.txt
+    - name: Build
+      working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
+      shell: bash
+      run: |
+        ${{ inputs.build_command }}
+    - name: Run
+      working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
+      shell: bash
+      run: |
+        ${{ inputs.run_command }} 100 > /res/output-${{ inputs.folder }}-100.txt
+        cat /res/output-${{ inputs.folder }}-100.txt
+    - name: Set script permissions
+      shell: bash
+      run: chmod +x ./test_lang.sh
+    - name: Validate file
+      shell: bash
+      run: ./test_lang.sh /res/output-${{ inputs.folder }}-100.txt

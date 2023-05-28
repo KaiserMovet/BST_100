@@ -1,0 +1,26 @@
+# THIS FILE IS GENERATED AUTOMATICALLY. IF YOU WANT TO CHANGE THIS, CHANGE
+# 'templates/test_lang.yaml.j2' FILE
+
+name: Test lang - cpp
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - './BST/cpp/**'
+
+jobs:
+  test_output:
+    runs-on: ubuntu-latest
+    container:
+      image: gcc:12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: cpp
+          build_command: g++ -o main.out main.cpp tree.cpp node.cpp
+          run_command: ./main.out

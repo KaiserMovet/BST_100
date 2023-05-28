@@ -1,0 +1,26 @@
+# THIS FILE IS GENERATED AUTOMATICALLY. IF YOU WANT TO CHANGE THIS, CHANGE
+# 'templates/test_lang.yaml.j2' FILE
+
+name: Test lang - lua
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - './BST/lua/**'
+
+jobs:
+  test_output:
+    runs-on: ubuntu-latest
+    container:
+      image: nickblah/lua:5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: lua
+          build_command: 
+          run_command: lua main.lua
