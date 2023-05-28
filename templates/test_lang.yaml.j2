@@ -8,11 +8,10 @@ on:
     branches:
       - master
     paths:
-      - 'BST/{{ job.language }}/**'
+      - './BST/{{ job.language }}/**'
 
 jobs:
- 
-  {{ job.language }}:
+  test_output:
     runs-on: ubuntu-latest
     container:
       image: {{ job.image }}
