@@ -47,7 +47,7 @@ Also, you need to create conf.yaml with following keys:
  - run_command
  - build_command [optional]
 
-[Main file with 'BST Workflow'](.github\workflows\main.yaml) and proper "test_lang-[folder_name].yaml" file in [workflows folder](.github\workflows) will be created by [Create Jobs](.github\workflows\create_jobs.yaml).
+[Main file with 'BST Workflow'](.github\workflows\main.yaml) will be updated and "test_lang-[folder_name].yaml" file in [workflows folder](.github\workflows) will be created by [Create Jobs](.github\workflows\create_jobs.yaml).
 
 
 ## Performance tests
