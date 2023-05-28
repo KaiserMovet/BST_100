@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script is used to validate bst program output.
+
 # Check if a file was supplied as an argument
 if [ $# -ne 1 ]; then
   echo "Usage: $0 <file>"
