@@ -8,11 +8,10 @@ on:
     branches:
       - master
     paths:
-      - 'BST/python3/**'
+      - './BST/python3/**'
 
 jobs:
- 
-  python3:
+  test_output:
     runs-on: ubuntu-latest
     container:
       image: python:3.11

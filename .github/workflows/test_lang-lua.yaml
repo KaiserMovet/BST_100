@@ -8,11 +8,10 @@ on:
     branches:
       - master
     paths:
-      - 'BST/lua/**'
+      - './BST/lua/**'
 
 jobs:
- 
-  lua:
+  test_output:
     runs-on: ubuntu-latest
     container:
       image: nickblah/lua:5

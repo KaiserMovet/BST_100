@@ -8,11 +8,10 @@ on:
     branches:
       - master
     paths:
-      - 'BST/cpp/**'
+      - './BST/cpp/**'
 
 jobs:
- 
-  cpp:
+  test_output:
     runs-on: ubuntu-latest
     container:
       image: gcc:12

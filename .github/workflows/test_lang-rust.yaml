@@ -8,11 +8,10 @@ on:
     branches:
       - master
     paths:
-      - 'BST/rust/**'
+      - './BST/rust/**'
 
 jobs:
- 
-  rust:
+  test_output:
     runs-on: ubuntu-latest
     container:
       image: rust:1.67

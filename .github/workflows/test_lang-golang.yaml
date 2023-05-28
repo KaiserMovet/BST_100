@@ -8,11 +8,10 @@ on:
     branches:
       - master
     paths:
-      - 'BST/golang/**'
+      - './BST/golang/**'
 
 jobs:
- 
-  golang:
+  test_output:
     runs-on: ubuntu-latest
     container:
       image: golang:1.20.4
