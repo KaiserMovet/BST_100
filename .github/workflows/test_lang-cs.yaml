@@ -1,0 +1,27 @@
+# THIS FILE IS GENERATED AUTOMATICALLY. IF YOU WANT TO CHANGE THIS, CHANGE
+# 'templates/test_lang.yaml.j2' FILE
+
+name: Test lang - {job.language}
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'BST//**'
+
+jobs:
+ 
+  cs:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:5.0
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: cs
+          build_command: 
+          run_command: dotnet run
