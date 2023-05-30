@@ -38,6 +38,6 @@ int tree_height(Tree* tree){
 void tree_remove(Tree* tree){
     if(tree->root != NULL){
         node_remove(tree->root);
-        free(tree);
     }
+    free(tree);
 }

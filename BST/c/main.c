@@ -4,7 +4,7 @@
 #include "tree.h"
 #include "node.h"
 
-int* read_numbers_from_file(char* filename, int amount) {
+int* read_numbers_from_file(const char* filename, int amount) {
     int* numbers = (int*)malloc(amount * sizeof(int)); // przydzielenie pamięci dla tablicy
     int i = 0;
 
