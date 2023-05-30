@@ -23,8 +23,8 @@ class Node {
 
     +add(int value) bool
     +contain(int value) bool
-    +length() bool
-    +height() bool
+    +length() int
+    +height() int
 }
 
 class Tree {
@@ -32,8 +32,8 @@ class Tree {
 
     +add(int value) bool
     +contain(int value) bool
-    +length() bool
-    +height() bool
+    +length() int
+    +height() int
 }
 ```
 
