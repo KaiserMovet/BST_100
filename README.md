@@ -77,4 +77,12 @@ To run the code in each language, you will need to have Docker installed.
 
 ## Running the code
 
-To run the code in each language, navigate to the appropriate directory in the repository and run `./run.sh`.
+To run the code, run `python run.py {language_name}`.
+
+## Pipelines
+
+There are 3 main pipelines in this project:
+
+- [main.yml](.github/workflows/main.yaml) - Main pipeline which run all apps and generate file with performance results. This pipeline is triggered manualy.
+- [create_jobs.yml](.github/workflows/create_jobs.yaml) - This pipeline generate new [main.yml](.github/workflows/main.yaml) and [test_lang-.yml](.github/workflows) when new folder in [BST](BST) is created. This pipeline is triggered automatically in every pull request.
+- [test_lang-.yml](.github/workflows) - This pipeline will run bst implementation once for 100 elements. This job also checks, if output of bst implementation is correct.
