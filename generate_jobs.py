@@ -71,7 +71,7 @@ def main():
             10_000_000,
         ]
     )
-    attempts = str(list(range(1, 4)))
+    attempts = str(list(range(1, 6)))
 
     # BST jobs
     template_bst = get_template("main.yaml.j2")
