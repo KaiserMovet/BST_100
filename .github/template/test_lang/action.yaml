@@ -22,6 +22,7 @@ runs:
         cp datasets/* /datasets
         touch /res/output-${{ inputs.folder }}-100.txt
     - name: Build
+      if: ${{ inputs.build_command }}
       working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
       shell: bash
       run: |
