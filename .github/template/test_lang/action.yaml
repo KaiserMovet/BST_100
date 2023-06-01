@@ -9,6 +9,10 @@ inputs:
     default: ""
   run_command:
     required: true
+  lenght:
+    required: true
+  height:
+    required: true
 
 runs:
   using: "composite"
@@ -20,7 +24,7 @@ runs:
         mkdir /res
         mkdir /datasets
         cp datasets/* /datasets
-        touch /res/output-${{ inputs.folder }}-100.txt
+        touch /res/output-${{ inputs.folder }}-${{ inputs.lenght }}.txt
     - name: Build
       if: ${{ inputs.build_command }}
       working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
@@ -31,11 +35,17 @@ runs:
       working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
       shell: bash
       run: |
-        ${{ inputs.run_command }} 100 > /res/output-${{ inputs.folder }}-100.txt
-        cat /res/output-${{ inputs.folder }}-100.txt
-    - name: Set script permissions
+        ${{ inputs.run_command }} ${{ inputs.lenght }} > /res/output-${{ inputs.folder }}-${{ inputs.lenght }}.txt
+        cat /res/output-${{ inputs.folder }}-${{ inputs.lenght }}.txt
+    - name: Set test_lang script permissions
       shell: bash
       run: chmod +x ./test_lang.sh
-    - name: Validate file
+    - name: Run test_lang test
       shell: bash
-      run: ./test_lang.sh /res/output-${{ inputs.folder }}-100.txt
+      run: ./test_lang.sh /res/output-${{ inputs.folder }}-${{ inputs.lenght }}.txt
+    - name: Set validate_results script permissions
+      shell: bash
+      run: chmod +x ./validate_results.sh
+    - name: Run validate_results test
+      shell: bash
+      run: ./validate_results.sh /res/output-${{ inputs.folder }}-${{ inputs.lenght }}.txt ${{ inputs.lenght }} ${{ inputs.height }}

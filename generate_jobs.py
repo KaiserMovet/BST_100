@@ -16,6 +16,13 @@ class Job:
     build_cmd: str = ""
 
 
+@dataclass
+class TestData:
+    name: int
+    lenght: int
+    height: int
+
+
 def get_env() -> Environment:
     return Environment(loader=FileSystemLoader("templates/"))
 
@@ -53,6 +60,12 @@ def main():
     bst_path = get_bst_path()
     jobs = get_jobs(bst_path)
     languages = [job.language for job in jobs]
+    test_data_collection = [
+        TestData(name=1, lenght=2, height=2),
+        TestData(name=2, lenght=5, height=4),
+        TestData(name=3, lenght=15, height=7),
+        TestData(name=4, lenght=500, height=19),
+    ]
     amount = str(
         [
             100,
@@ -86,7 +99,9 @@ def main():
     template_test = get_template("test_lang.yaml.j2")
 
     for job in jobs:
-        rendered_template_test = template_test.render(job=job)
+        rendered_template_test = template_test.render(
+            job=job, test_data_collection=test_data_collection
+        )
         with open(
             f"./.github/workflows/test_lang-{job.language}.yaml", "w"
         ) as f:

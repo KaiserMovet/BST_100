@@ -11,7 +11,7 @@ on:
       - './BST/{{ job.language }}/**'
 
 jobs:
-  test_output:
+  test_output_base:
     runs-on: ubuntu-latest
     container:
       image: {{ job.image }}
@@ -23,4 +23,26 @@ jobs:
         with:
           folder: {{ job.language }}
           build_command: {{ job.build_cmd }}
-          run_command: {{ job.run_cmd }} 100
+          run_command: {{ job.run_cmd }}
+          lenght: 100
+          height: 14
+  {% for test_data in test_data_collection %}
+  test_output_{{ test_data.name }}:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: {{ job.image }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: {{ job.language }}
+          build_command: {{ job.build_cmd }}
+          run_command: {{ job.run_cmd }}
+          lenght: {{ test_data.lenght }}
+          height: {{ test_data.height }}
+
+  {$ endfor $}
+
