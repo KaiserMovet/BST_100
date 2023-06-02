@@ -4,7 +4,7 @@
 name: Test lang - c
 
 on:
-  pull_request_target:
+  push:
     paths:
       - './BST/c/**'
 
