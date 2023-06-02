@@ -4,12 +4,11 @@
 name: Test lang - ruby
 
 on:
-  pull_request:
+  push:
     branches:
       - master
     paths:
       - './BST/ruby/**'
-  workflow_dispatch:
 
 jobs:
   test_output_base:
