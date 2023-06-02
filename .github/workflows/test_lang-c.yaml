@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - master
+    paths:
+      - './BST/c'
 
 jobs:
   test_output_base:
