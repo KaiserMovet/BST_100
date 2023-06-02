@@ -3,7 +3,7 @@
 
 name: Test lang - ruby
 
-
+on: [pull_request]
 
 jobs:
   test_output_base:

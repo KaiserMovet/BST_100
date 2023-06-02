@@ -3,7 +3,7 @@
 
 name: Test lang - cpp
 
-
+on: [pull_request]
 
 jobs:
   test_output_base:
