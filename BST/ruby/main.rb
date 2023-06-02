@@ -26,7 +26,7 @@ add_numbers.each do |i|
   bst.add(i)
 end
 end_time = Time.now
-puts "ADD_TEST:#{end_time - start_time}"
+puts "ADD  _TEST:#{end_time - start_time}"
 
 # Check elements
 start_time = Time.now
