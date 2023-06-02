@@ -5,21 +5,20 @@
 #include "node.h"
 
 int* read_numbers_from_file(const char* filename, int amount) {
-    int* numbers = (int*)malloc(amount * sizeof(int)); // przydzielenie pamięci dla tablicy
+    int* numbers = (int*)malloc(amount * sizeof(int));
     int i = 0;
 
-    FILE* input_file = fopen(filename, "r"); // otwarcie pliku tekstowego
-
+    FILE* input_file = fopen(filename, "r");
     if (input_file == NULL) {
         printf("Blad: Nie udalo sie otworzyc pliku!");
         exit(1);
     }
 
-    while (fscanf(input_file, "%d", &numbers[i]) != EOF && i < amount) { // odczytaj liczby z pliku i zapisz w tablicy
+    while (fscanf(input_file, "%d", &numbers[i]) != EOF && i < amount) {
         i++;
     }
 
-    fclose(input_file); // zamknięcie pliku
+    fclose(input_file);
 
     return numbers;
 }

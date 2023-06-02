@@ -67,7 +67,7 @@ class Result:
                 val = (int(line.split(":")[1]), int(line.split(":")[2]))
         if any([key is None for key in [add, check, leng, height, val]]):
             logger.error(
-                f"Cannot find all keys in {name}:{amount}. Full output:\n{result}"
+                f"Cannot find all keys in {name}:{amount}. Full output:\n\n{result}"
             )
         return Result(
             name=name,

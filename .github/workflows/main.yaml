@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
-        attempt: [1, 2, 3]
+        attempt: [1, 2, 3, 4, 5]
     container:
       image: rust:1.67
     steps:
@@ -33,7 +33,7 @@ jobs:
     strategy:
       matrix:
         amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
-        attempt: [1, 2, 3]
+        attempt: [1, 2, 3, 4, 5]
     container:
       image: python:3.11
     steps:
@@ -52,7 +52,7 @@ jobs:
     strategy:
       matrix:
         amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
-        attempt: [1, 2, 3]
+        attempt: [1, 2, 3, 4, 5]
     container:
       image: mcr.microsoft.com/dotnet/sdk:5.0
     steps:
@@ -71,7 +71,7 @@ jobs:
     strategy:
       matrix:
         amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
-        attempt: [1, 2, 3]
+        attempt: [1, 2, 3, 4, 5]
     container:
       image: gcc:12
     steps:
@@ -81,7 +81,7 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: c
-          build_command: g++ -std=c99 -o main.out main.c node.c tree.c
+          build_command: gcc -std=c99 -o main.out main.c node.c tree.c
           run_command: ./main.out
 
   
@@ -90,7 +90,7 @@ jobs:
     strategy:
       matrix:
         amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
-        attempt: [1, 2, 3]
+        attempt: [1, 2, 3, 4, 5]
     container:
       image: nickblah/lua:5
     steps:
@@ -109,7 +109,7 @@ jobs:
     strategy:
       matrix:
         amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
-        attempt: [1, 2, 3]
+        attempt: [1, 2, 3, 4, 5]
     container:
       image: gcc:12
     steps:
@@ -123,12 +123,31 @@ jobs:
           run_command: ./main.out
 
   
+  ruby:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        attempt: [1, 2, 3, 4, 5]
+    container:
+      image: ruby:3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: ruby
+          build_command: 
+          run_command: ruby main.rb
+
+  
   golang:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
-        attempt: [1, 2, 3]
+        attempt: [1, 2, 3, 4, 5]
     container:
       image: golang:1.20.4
     steps:
@@ -144,7 +163,7 @@ jobs:
 
 
   summary:
-    needs: ['rust', 'python3', 'cs', 'c', 'lua', 'cpp', 'golang']
+    needs: ['rust', 'python3', 'cs', 'c', 'lua', 'cpp', 'ruby', 'golang']
 
     runs-on: ubuntu-latest
     steps:

@@ -11,7 +11,7 @@ on:
       - './BST/python3/**'
 
 jobs:
-  test_output:
+  test_output_base:
     runs-on: ubuntu-latest
     container:
       image: python:3.11
@@ -22,5 +22,80 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: python3
-          build_command: 
+          
           run_command: python main.py
+          lenght: 100
+          height: 14
+  
+  test_output_1:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.11
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: python3
+          
+          run_command: python main.py
+          lenght: 2
+          height: 2
+
+  
+  test_output_2:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.11
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: python3
+          
+          run_command: python main.py
+          lenght: 5
+          height: 4
+
+  
+  test_output_3:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.11
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: python3
+          
+          run_command: python main.py
+          lenght: 15
+          height: 7
+
+  
+  test_output_4:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.11
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: python3
+          
+          run_command: python main.py
+          lenght: 500
+          height: 19
+
+  
