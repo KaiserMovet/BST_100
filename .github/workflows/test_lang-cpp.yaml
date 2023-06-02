@@ -22,7 +22,9 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: cpp
+          
           build_command: g++ -o main.out main.cpp tree.cpp node.cpp
+          
           run_command: ./main.out
           lenght: 100
           height: 14

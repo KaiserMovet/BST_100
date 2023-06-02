@@ -22,7 +22,7 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: cs
-          build_command: 
+          
           run_command: dotnet run
           lenght: 100
           height: 14

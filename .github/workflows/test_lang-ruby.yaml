@@ -22,7 +22,7 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: ruby
-          build_command: 
+          
           run_command: ruby main.rb
           lenght: 100
           height: 14
