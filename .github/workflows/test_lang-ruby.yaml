@@ -8,7 +8,7 @@ on:
     branches:
       - master
     paths:
-      - './BST/ruby'
+      - 'BST/ruby/main.rb'
 
 jobs:
   test_output_base:
