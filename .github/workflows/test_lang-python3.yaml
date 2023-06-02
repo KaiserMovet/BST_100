@@ -8,7 +8,7 @@ on:
     branches:
       - master
     paths:
-      - './BST/python3'
+      - './BST/python3/*'
 
 jobs:
   test_output_base:
