@@ -9,80 +9,23 @@ on:
 jobs:
 
   
-  lua:
+  rust:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
         attempt: [1, 2, 3, 4, 5]
     container:
-      image: nickblah/lua:5
+      image: rust:1.67
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Run bst
         uses: "./.github/template/runner"
         with:
-          folder: lua
-          build_command: 
-          run_command: lua main.lua
-
-  
-  ruby:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
-        attempt: [1, 2, 3, 4, 5]
-    container:
-      image: ruby:3
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Run bst
-        uses: "./.github/template/runner"
-        with:
-          folder: ruby
-          build_command: 
-          run_command: ruby main.rb
-
-  
-  c:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
-        attempt: [1, 2, 3, 4, 5]
-    container:
-      image: gcc:12
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Run bst
-        uses: "./.github/template/runner"
-        with:
-          folder: c
-          build_command: gcc -std=c99 -o main.out main.c node.c tree.c
-          run_command: ./main.out
-
-  
-  cs:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
-        attempt: [1, 2, 3, 4, 5]
-    container:
-      image: mcr.microsoft.com/dotnet/sdk:5.0
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Run bst
-        uses: "./.github/template/runner"
-        with:
-          folder: cs
-          build_command: 
-          run_command: dotnet run
+          folder: rust
+          build_command: rustc main.rs
+          run_command: ./main
 
   
   python3:
@@ -104,42 +47,61 @@ jobs:
           run_command: python main.py
 
   
-  golang:
+  cs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
         attempt: [1, 2, 3, 4, 5]
     container:
-      image: golang:1.20.4
+      image: mcr.microsoft.com/dotnet/sdk:5.0
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Run bst
         uses: "./.github/template/runner"
         with:
-          folder: golang
+          folder: cs
           build_command: 
-          run_command: go run *.go
+          run_command: dotnet run
 
   
-  rust:
+  c:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
         attempt: [1, 2, 3, 4, 5]
     container:
-      image: rust:1.67
+      image: gcc:12
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Run bst
         uses: "./.github/template/runner"
         with:
-          folder: rust
-          build_command: rustc main.rs
-          run_command: ./main
+          folder: c
+          build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+          run_command: ./main.out
+
+  
+  lua:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        attempt: [1, 2, 3, 4, 5]
+    container:
+      image: nickblah/lua:5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: lua
+          build_command: 
+          run_command: lua main.lua
 
   
   cpp:
@@ -160,10 +122,48 @@ jobs:
           build_command: g++ -o main.out main.cpp tree.cpp node.cpp
           run_command: ./main.out
 
+  
+  ruby:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        attempt: [1, 2, 3, 4, 5]
+    container:
+      image: ruby:3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: ruby
+          build_command: 
+          run_command: ruby main.rb
+
+  
+  golang:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        attempt: [1, 2, 3, 4, 5]
+    container:
+      image: golang:1.20.4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: golang
+          build_command: 
+          run_command: go run *.go
+
 
 
   summary:
-    needs: ['lua', 'ruby', 'c', 'cs', 'python3', 'golang', 'rust', 'cpp']
+    needs: ['rust', 'python3', 'cs', 'c', 'lua', 'cpp', 'ruby', 'golang']
 
     runs-on: ubuntu-latest
     steps:
