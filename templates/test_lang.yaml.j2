@@ -22,7 +22,9 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: {{ job.language }}
+          {% if job.build_cmd %}
           build_command: {{ job.build_cmd }}
+          {% endif %}
           run_command: {{ job.run_cmd }}
           lenght: 100
           height: 14
