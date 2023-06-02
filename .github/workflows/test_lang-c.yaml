@@ -5,8 +5,6 @@ name: Test lang - c
 
 on:
   pull_request_target:
-    branches:
-      - master
     paths:
       - './BST/c/**'
 
