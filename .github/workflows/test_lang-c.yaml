@@ -41,7 +41,9 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: c
+          
           build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+          
           run_command: ./main.out
           lenght: 2
           height: 2
@@ -59,7 +61,9 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: c
+          
           build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+          
           run_command: ./main.out
           lenght: 5
           height: 4
@@ -77,7 +81,9 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: c
+          
           build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+          
           run_command: ./main.out
           lenght: 15
           height: 7
@@ -95,7 +101,9 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: c
+          
           build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+          
           run_command: ./main.out
           lenght: 500
           height: 19
