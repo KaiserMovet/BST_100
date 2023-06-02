@@ -42,7 +42,7 @@ start_time = Time.now
   bst.length
 end
 end_time = Time.now
-puts "LEN_sssTEST:#{(end_time - start_time)/10}"
+puts "LEN_TEST:#{(end_time - start_time)/10}"
 
 # Height elements
 start_time = Time.now
