@@ -1,0 +1,2 @@
+image_name: mcr.microsoft.com/powershell:latest
+run_command: pwsh main.ps1
