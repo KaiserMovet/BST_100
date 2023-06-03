@@ -28,6 +28,25 @@ jobs:
           run_command: lua main.lua
 
   
+  javascript:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        attempt: [1, 2, 3, 4, 5]
+    container:
+      image: node:20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run bst
+        uses: "./.github/template/runner"
+        with:
+          folder: javascript
+          build_command: 
+          run_command: node  main.js
+
+  
   ruby:
     runs-on: ubuntu-latest
     strategy:
@@ -163,7 +182,7 @@ jobs:
 
 
   summary:
-    needs: ['lua', 'ruby', 'c', 'cs', 'python3', 'golang', 'rust', 'cpp']
+    needs: ['lua', 'javascript', 'ruby', 'c', 'cs', 'python3', 'golang', 'rust', 'cpp']
 
     runs-on: ubuntu-latest
     steps:
