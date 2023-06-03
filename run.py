@@ -15,6 +15,8 @@ def main():
     except Exception as e:
         print(e)
     print(res)
+    if res and res.validation[1] != 14:
+        print(f"Height should be 14. Currently is {res.validation[1]}")
 
 
 if __name__ == "__main__":

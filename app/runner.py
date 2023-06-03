@@ -80,7 +80,7 @@ class Runner:
             output = client.containers.run(
                 image=self.image_name,
                 name=self.container_name,
-                remove=False,
+                remove=True,
                 volumes=volumes,
                 command=f'bash -c "{self._get_command(amount)}"',
                 stdout=True,

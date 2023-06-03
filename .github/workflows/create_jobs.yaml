@@ -26,6 +26,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m 'Upload actions files'
+          git commit -m '[BOT] Update jobs'
           git push origin ${{ github.head_ref }}
         if: steps.changes.outputs.changed == 'true'
