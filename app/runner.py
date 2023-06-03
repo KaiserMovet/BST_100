@@ -16,6 +16,7 @@ class Runner:
     run_command: str
     container_name: str | None = None
     build_command: str = ""
+    install_requires: str = ""
     datasets_path: Path = Path("datasets")
 
     def __post_init__(self):
@@ -31,6 +32,7 @@ class Runner:
             app_path=app_path,
             run_command=conf["run_command"],
             build_command=conf.get("build_command", ""),
+            install_requires=conf.get("install_requires", ""),
         )
 
     @property
@@ -63,6 +65,7 @@ class Runner:
     def _get_command(self, amount: int = 10000000) -> str:
         command = [
             "cp -r app/* .",
+            self.install_requires or "echo",
             self.build_command or "echo",
             f"{self.run_command} {amount}",
         ]

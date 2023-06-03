@@ -24,7 +24,6 @@ jobs:
           folder: cpp
           
           build_command: g++ -o main.out main.cpp tree.cpp node.cpp
-          
           run_command: ./main.out
           lenght: 100
           height: 14
@@ -43,7 +42,6 @@ jobs:
           folder: cpp
           
           build_command: g++ -o main.out main.cpp tree.cpp node.cpp
-          
           run_command: ./main.out
           lenght: 2
           height: 2
@@ -63,7 +61,6 @@ jobs:
           folder: cpp
           
           build_command: g++ -o main.out main.cpp tree.cpp node.cpp
-          
           run_command: ./main.out
           lenght: 5
           height: 4
@@ -83,7 +80,6 @@ jobs:
           folder: cpp
           
           build_command: g++ -o main.out main.cpp tree.cpp node.cpp
-          
           run_command: ./main.out
           lenght: 15
           height: 7
@@ -103,7 +99,6 @@ jobs:
           folder: cpp
           
           build_command: g++ -o main.out main.cpp tree.cpp node.cpp
-          
           run_command: ./main.out
           lenght: 500
           height: 19

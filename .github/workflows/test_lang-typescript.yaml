@@ -1,30 +1,30 @@
 # THIS FILE IS GENERATED AUTOMATICALLY. IF YOU WANT TO CHANGE THIS, CHANGE
 # 'templates/test_lang.yaml.j2' FILE
 
-name: Test lang - ruby
+name: Test lang - typescript
 
 on:
   pull_request:
     branches:
       - master
     paths:
-      - BST/ruby/**
+      - BST/typescript/**
 
 jobs:
   test_output_base:
     runs-on: ubuntu-latest
     container:
-      image: ruby:3
+      image: mcr.microsoft.com/devcontainers/typescript-node:20
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Test bst
         uses: "./.github/template/test_lang"
         with:
-          folder: ruby
-          
-          
-          run_command: ruby main.rb
+          folder: typescript
+          install_requires: npm i --save-dev @types/node
+          build_command: tsc main.ts
+          run_command: node main.js
           lenght: 100
           height: 14
   
@@ -32,17 +32,17 @@ jobs:
     needs: test_output_base
     runs-on: ubuntu-latest
     container:
-      image: ruby:3
+      image: mcr.microsoft.com/devcontainers/typescript-node:20
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Test bst
         uses: "./.github/template/test_lang"
         with:
-          folder: ruby
-          
-          
-          run_command: ruby main.rb
+          folder: typescript
+          install_requires: npm i --save-dev @types/node
+          build_command: tsc main.ts
+          run_command: node main.js
           lenght: 2
           height: 2
 
@@ -51,17 +51,17 @@ jobs:
     needs: test_output_base
     runs-on: ubuntu-latest
     container:
-      image: ruby:3
+      image: mcr.microsoft.com/devcontainers/typescript-node:20
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Test bst
         uses: "./.github/template/test_lang"
         with:
-          folder: ruby
-          
-          
-          run_command: ruby main.rb
+          folder: typescript
+          install_requires: npm i --save-dev @types/node
+          build_command: tsc main.ts
+          run_command: node main.js
           lenght: 5
           height: 4
 
@@ -70,17 +70,17 @@ jobs:
     needs: test_output_base
     runs-on: ubuntu-latest
     container:
-      image: ruby:3
+      image: mcr.microsoft.com/devcontainers/typescript-node:20
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Test bst
         uses: "./.github/template/test_lang"
         with:
-          folder: ruby
-          
-          
-          run_command: ruby main.rb
+          folder: typescript
+          install_requires: npm i --save-dev @types/node
+          build_command: tsc main.ts
+          run_command: node main.js
           lenght: 15
           height: 7
 
@@ -89,17 +89,17 @@ jobs:
     needs: test_output_base
     runs-on: ubuntu-latest
     container:
-      image: ruby:3
+      image: mcr.microsoft.com/devcontainers/typescript-node:20
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Test bst
         uses: "./.github/template/test_lang"
         with:
-          folder: ruby
-          
-          
-          run_command: ruby main.rb
+          folder: typescript
+          install_requires: npm i --save-dev @types/node
+          build_command: tsc main.ts
+          run_command: node main.js
           lenght: 500
           height: 19
 

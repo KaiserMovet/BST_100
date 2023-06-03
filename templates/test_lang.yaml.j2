@@ -22,9 +22,8 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: {{ job.language }}
-          {% if job.build_cmd %}
-          build_command: {{ job.build_cmd }}
-          {% endif %}
+          {% if job.install_requires %}install_requires: {{ job.install_requires }}{% endif %}
+          {% if job.build_cmd %}build_command: {{ job.build_cmd }}{% endif %}
           run_command: {{ job.run_cmd }}
           lenght: 100
           height: 14
@@ -41,9 +40,8 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: {{ job.language }}
-          {% if job.build_cmd %}
-          build_command: {{ job.build_cmd }}
-          {% endif %}
+          {% if job.install_requires %}install_requires: {{ job.install_requires }}{% endif %}
+          {% if job.build_cmd %}build_command: {{ job.build_cmd }}{% endif %}
           run_command: {{ job.run_cmd }}
           lenght: {{ test_data.lenght }}
           height: {{ test_data.height }}
