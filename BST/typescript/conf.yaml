@@ -1,0 +1,4 @@
+image_name: mcr.microsoft.com/devcontainers/typescript-node:20
+install_requires: npm i --save-dev @types/node
+build_command: tsc main.ts
+run_command: node main.js

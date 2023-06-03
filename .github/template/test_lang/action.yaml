@@ -4,6 +4,9 @@ name: test_lang
 inputs:
   folder:
     required: true
+  install_requires:
+    required: false
+    default: ""
   build_command:
     required: false
     default: ""
@@ -25,6 +28,12 @@ runs:
         mkdir /datasets
         cp datasets/* /datasets
         touch /res/output-${{ inputs.folder }}-${{ inputs.lenght }}.txt
+    - name: Install requirements
+      if: ${{ inputs.install_requires }}
+      working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}
+      shell: bash
+      run: |
+        ${{ inputs.install_requires }}
     - name: Build
       if: ${{ inputs.build_command }}
       working-directory: ${{ github.workspace }}/BST/${{ inputs.folder }}

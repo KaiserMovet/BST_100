@@ -14,6 +14,7 @@ class Job:
     image: str
     run_cmd: str
     build_cmd: str = ""
+    install_requires: str = ""
 
 
 @dataclass
@@ -47,6 +48,7 @@ def get_jobs(bst_path: Path) -> list[Job]:
             image=conf["image_name"],
             run_cmd=conf["run_command"],
             build_cmd=conf.get("build_command", ""),
+            install_requires=conf.get("install_requires", ""),
         )
         jobs.append(job)
     return jobs
