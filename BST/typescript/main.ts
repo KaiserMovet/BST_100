@@ -1,4 +1,4 @@
-import fs from 'fs';
+import * as fs from 'fs';
 import { Tree } from './tree'; // zakładam, że Tree jest klasą eksportowaną przez tree.js
 
 function getNumbers(path: string): number[] {
