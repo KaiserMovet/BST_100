@@ -1,0 +1,3 @@
+image_name: ibmjava:8-sdk
+build_command: javac Main.java Node.java
+run_command: java -Xmx2g Main
