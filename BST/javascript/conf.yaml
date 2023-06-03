@@ -1,0 +1,2 @@
+image_name: node:20
+run_command: node  main.js
