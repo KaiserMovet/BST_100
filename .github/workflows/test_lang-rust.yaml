@@ -23,9 +23,7 @@ jobs:
         with:
           folder: rust
           
-          
           build_command: rustc main.rs
-          
           run_command: ./main
           lenght: 100
           height: 14
@@ -43,9 +41,7 @@ jobs:
         with:
           folder: rust
           
-          
           build_command: rustc main.rs
-          
           run_command: ./main
           lenght: 2
           height: 2
@@ -64,9 +60,7 @@ jobs:
         with:
           folder: rust
           
-          
           build_command: rustc main.rs
-          
           run_command: ./main
           lenght: 5
           height: 4
@@ -85,9 +79,7 @@ jobs:
         with:
           folder: rust
           
-          
           build_command: rustc main.rs
-          
           run_command: ./main
           lenght: 15
           height: 7
@@ -106,9 +98,7 @@ jobs:
         with:
           folder: rust
           
-          
           build_command: rustc main.rs
-          
           run_command: ./main
           lenght: 500
           height: 19
