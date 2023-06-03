@@ -24,7 +24,7 @@ for key in "${required_keys[@]}"; do
 done
 
 # Check the format of the VALIDATION key
-if ! grep -qE '^VALIDATION:\d+:\d+$' "$file"; then
+if ! grep -qE '^VALIDATION:\d+:\d+[\r\n]*$' "$file"; then
   echo "Error: 'VALIDATION' key is not in the correct format in file '$file'"
   exit 1
 fi
