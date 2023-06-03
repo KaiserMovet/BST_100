@@ -1,5 +1,7 @@
 # BST_100
 
+[![BST Workflow](https://github.com/KaiserMovet/BST_100/actions/workflows/main.yaml/badge.svg)](https://github.com/KaiserMovet/BST_100/actions/workflows/main.yaml)
+
 ## Implementation of BST in various programming languages
 
 This project consists of implementations of BST (Binary Search Tree) in various programming languages. A BST is a data structure that allows for fast searching, adding, and removing of elements in logarithmic time. Each of the implementations has been performance-tested by performing 5,000,000 additions of numbers to the tree, followed by 10,000,000 checks to see if the tree contains elements.
