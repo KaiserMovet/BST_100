@@ -40,6 +40,7 @@ jobs:
         with:
           folder: lua
           
+          
           run_command: lua main.lua
           lenght: 2
           height: 2
@@ -57,6 +58,7 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: lua
+          
           
           run_command: lua main.lua
           lenght: 5
@@ -76,6 +78,7 @@ jobs:
         with:
           folder: lua
           
+          
           run_command: lua main.lua
           lenght: 15
           height: 7
@@ -93,6 +96,7 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: lua
+          
           
           run_command: lua main.lua
           lenght: 500

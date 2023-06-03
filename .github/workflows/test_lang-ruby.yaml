@@ -40,6 +40,7 @@ jobs:
         with:
           folder: ruby
           
+          
           run_command: ruby main.rb
           lenght: 2
           height: 2
@@ -57,6 +58,7 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: ruby
+          
           
           run_command: ruby main.rb
           lenght: 5
@@ -76,6 +78,7 @@ jobs:
         with:
           folder: ruby
           
+          
           run_command: ruby main.rb
           lenght: 15
           height: 7
@@ -93,6 +96,7 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: ruby
+          
           
           run_command: ruby main.rb
           lenght: 500

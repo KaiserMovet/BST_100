@@ -40,6 +40,7 @@ jobs:
         with:
           folder: golang
           
+          
           run_command: go run *.go
           lenght: 2
           height: 2
@@ -57,6 +58,7 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: golang
+          
           
           run_command: go run *.go
           lenght: 5
@@ -76,6 +78,7 @@ jobs:
         with:
           folder: golang
           
+          
           run_command: go run *.go
           lenght: 15
           height: 7
@@ -93,6 +96,7 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: golang
+          
           
           run_command: go run *.go
           lenght: 500
