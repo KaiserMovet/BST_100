@@ -23,6 +23,7 @@ jobs:
         with:
           folder: c
           
+          
           build_command: gcc -std=c99 -o main.out main.c node.c tree.c
           
           run_command: ./main.out

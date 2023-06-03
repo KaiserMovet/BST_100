@@ -23,6 +23,7 @@ jobs:
         with:
           folder: ruby
           
+          
           run_command: ruby main.rb
           lenght: 100
           height: 14

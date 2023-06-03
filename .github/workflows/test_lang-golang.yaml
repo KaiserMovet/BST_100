@@ -23,6 +23,7 @@ jobs:
         with:
           folder: golang
           
+          
           run_command: go run *.go
           lenght: 100
           height: 14

@@ -23,6 +23,9 @@ jobs:
         with:
           folder: typescript
           
+          install_requires: npm i --save-dev @types/node
+          
+          
           build_command: tsc main.ts
           
           run_command: node main.js

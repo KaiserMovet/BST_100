@@ -23,6 +23,7 @@ jobs:
         with:
           folder: rust
           
+          
           build_command: rustc main.rs
           
           run_command: ./main
