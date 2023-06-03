@@ -22,12 +22,8 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: typescript
-          
           install_requires: npm i --save-dev @types/node
-          
-          
           build_command: tsc main.ts
-          
           run_command: node main.js
           lenght: 100
           height: 14
@@ -44,12 +40,8 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: typescript
-          
           install_requires: npm i --save-dev @types/node
-          
-          
           build_command: tsc main.ts
-          
           run_command: node main.js
           lenght: 2
           height: 2
@@ -67,12 +59,8 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: typescript
-          
           install_requires: npm i --save-dev @types/node
-          
-          
           build_command: tsc main.ts
-          
           run_command: node main.js
           lenght: 5
           height: 4
@@ -90,12 +78,8 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: typescript
-          
           install_requires: npm i --save-dev @types/node
-          
-          
           build_command: tsc main.ts
-          
           run_command: node main.js
           lenght: 15
           height: 7
@@ -113,12 +97,8 @@ jobs:
         uses: "./.github/template/test_lang"
         with:
           folder: typescript
-          
           install_requires: npm i --save-dev @types/node
-          
-          
           build_command: tsc main.ts
-          
           run_command: node main.js
           lenght: 500
           height: 19
