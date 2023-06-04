@@ -24,7 +24,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: lua
-          build_command: 
+          
+          
+
           run_command: lua main.lua
 
   
@@ -43,7 +45,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: javascript
-          build_command: 
+          
+          
+
           run_command: node  main.js
 
   
@@ -62,7 +66,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: ruby
-          build_command: 
+          
+          
+
           run_command: ruby main.rb
 
   
@@ -81,7 +87,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: c
+          
           build_command: gcc -std=c99 -o main.out main.c node.c tree.c
+
           run_command: ./main.out
 
   
@@ -100,7 +108,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: cs
-          build_command: 
+          
+          
+
           run_command: dotnet run
 
   
@@ -119,7 +129,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: python3
-          build_command: 
+          
+          
+
           run_command: python main.py
 
   
@@ -138,7 +150,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: typescript
+          install_requires: npm i --save-dev @types/node
           build_command: tsc main.ts
+
           run_command: node main.js
 
   
@@ -157,7 +171,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: golang
-          build_command: 
+          
+          
+
           run_command: go run *.go
 
   
@@ -176,7 +192,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: rust
+          
           build_command: rustc main.rs
+
           run_command: ./main
 
   
@@ -195,7 +213,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: cpp
+          
           build_command: g++ -o main.out main.cpp tree.cpp node.cpp
+
           run_command: ./main.out
 
   
@@ -214,7 +234,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: powershell
-          build_command: 
+          
+          
+
           run_command: pwsh main.ps1
 
   
@@ -233,7 +255,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: java
+          
           build_command: javac Main.java Node.java
+
           run_command: java -Xmx2g Main
 
 
