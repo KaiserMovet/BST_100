@@ -24,7 +24,9 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: {{ job.language }}
-          build_command: {{ job.build_cmd }}
+          {% if job.install_requires %}install_requires: {{ job.install_requires }}{% endif %}
+          {% if job.build_cmd %}build_command: {{ job.build_cmd }}{% endif %}
+
           run_command: {{ job.run_cmd }}
 
 {% endfor %}
