@@ -2,11 +2,14 @@ import json
 import re
 from collections import defaultdict
 from dataclasses import asdict, dataclass
+from pathlib import Path
 from typing import Any, Callable, Dict, List
 
 import matplotlib.pyplot as plt
 
 from logger import logger
+
+from .const import RESULT_JSON
 
 
 class ResultValidation(Exception):
@@ -163,7 +166,9 @@ class ResultCollection:
         self.plot_height()
         self.plot_len()
 
-    def to_json(self, merge_with_existing: bool = False) -> None:
+    def to_json(
+        self, file_name: Path = RESULT_JSON, merge_with_existing: bool = False
+    ) -> None:
         temp_data = {}
         for name in self.data.keys():
             temp_data[name] = {}
@@ -171,12 +176,12 @@ class ResultCollection:
                 temp_data[name][amount] = self.data[name][amount].asdict()
 
         if merge_with_existing:
-            with open("results.json", "r") as fp:
+            with open(file_name, "r") as fp:
                 actual_data = json.load(fp)
                 actual_data.update(temp_data)
                 temp_data = actual_data
 
-        with open("results.json", "w") as fp:
+        with open(file_name, "w") as fp:
             json.dump(temp_data, fp)
 
     def __repr__(self):

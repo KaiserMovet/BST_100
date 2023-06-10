@@ -7,14 +7,7 @@ from jinja2 import Environment, FileSystemLoader, Template
 from requests import get
 from yaml.loader import SafeLoader
 
-
-@dataclass
-class Job:
-    language: str
-    image: str
-    run_cmd: str
-    build_cmd: str = ""
-    install_requires: str = ""
+from app import Job, get_jobs
 
 
 @dataclass
@@ -34,33 +27,8 @@ def get_template(name: str) -> Template:
     return template
 
 
-def get_jobs(bst_path: Path) -> list[Job]:
-    bst_list = [x for x in bst_path.iterdir() if x.is_dir()]
-    jobs: List[Job] = []
-    for bst in bst_list:
-        print(bst)
-        conf = None
-        with open(bst / "conf.yaml") as f:
-            conf = yaml.load(f, SafeLoader)
-        print(conf)
-        job = Job(
-            language=bst.name,
-            image=conf["image_name"],
-            run_cmd=conf["run_command"],
-            build_cmd=conf.get("build_command", ""),
-            install_requires=conf.get("install_requires", ""),
-        )
-        jobs.append(job)
-    return jobs
-
-
-def get_bst_path() -> Path:
-    return Path("BST/")
-
-
-def main():
-    bst_path = get_bst_path()
-    jobs = get_jobs(bst_path)
+def main() -> None:
+    jobs = get_jobs()
     languages = [job.language for job in jobs]
     test_data_collection = [
         TestData(name=1, lenght=2, height=2),

@@ -1,11 +1,11 @@
+import json
 import sys
 from pathlib import Path
 
-from app import Result, ResultCollection
+from app import CONF_JSON, Job, Result, ResultCollection, get_jobs
 
 
-def main():
-    results_path = Path(sys.argv[1]).resolve()
+def generate_results(results_path):
     results = []
     print(f"Checking path {results_path}")
 
@@ -21,6 +21,21 @@ def main():
     rc = ResultCollection(results)
     rc.plot_all()
     rc.to_json(merge_with_existing=False)
+
+
+def generate_conf_json():
+    jobs = get_jobs()
+    conf = {}
+    for job in jobs:
+        conf[job.language] = job.to_dict()
+    with open(CONF_JSON, "w") as f:
+        json.dump(conf, f)
+
+
+def main():
+    results_path = Path(sys.argv[1]).resolve()
+    generate_results(results_path)
+    generate_conf_json()
 
 
 if __name__ == "__main__":
