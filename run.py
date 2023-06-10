@@ -1,11 +1,11 @@
 import sys
 
-from app import Result, Runner
+from app import BST_PATH, Job, Result
 
 
 def main():
     lang = sys.argv[1]
-    runner = Runner.FROM_FOLDER(lang)
+    runner = Job.FROM_YAML(BST_PATH / lang)
     result = runner.run(100)
     print(result)
 

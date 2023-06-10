@@ -50,9 +50,8 @@ jobs:
           ls ${{ github.workspace }}/temp/results
           python pipeline_analysis.py ${{ github.workspace }}/temp/results
         working-directory: ${{ github.workspace }}
-      - name: Add results.json
+      - name: Commit new results
         run: |
-          git add results.json
           git add results/*
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"

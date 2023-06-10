@@ -7,13 +7,27 @@ on:
   workflow_dispatch:
 
 jobs:
-
-  
   lua:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: nickblah/lua:5
@@ -24,17 +38,30 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: lua
-          
-          
 
           run_command: lua main.lua
 
-  
   javascript:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: node:20
@@ -45,17 +72,30 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: javascript
-          
-          
 
           run_command: node  main.js
 
-  
   ruby:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: ruby:3
@@ -66,17 +106,30 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: ruby
-          
-          
 
           run_command: ruby main.rb
 
-  
   c:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: gcc:12
@@ -87,17 +140,32 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: c
-          
+
           build_command: gcc -std=c99 -o main.out main.c node.c tree.c
 
           run_command: ./main.out
 
-  
   cs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: mcr.microsoft.com/dotnet/sdk:5.0
@@ -108,17 +176,30 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: cs
-          
-          
 
           run_command: dotnet run
 
-  
   python3:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: python:3.11
@@ -129,17 +210,30 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: python3
-          
-          
 
           run_command: python main.py
 
-  
   typescript:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: mcr.microsoft.com/devcontainers/typescript-node:20
@@ -155,12 +249,27 @@ jobs:
 
           run_command: node main.js
 
-  
   golang:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: golang:1.20.4
@@ -171,17 +280,30 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: golang
-          
-          
 
           run_command: go run *.go
 
-  
   rust:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: rust:1.67
@@ -192,17 +314,32 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: rust
-          
+
           build_command: rustc main.rs
 
           run_command: ./main
 
-  
   cpp:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: gcc:12
@@ -213,17 +350,32 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: cpp
-          
+
           build_command: g++ -o main.out main.cpp tree.cpp node.cpp
 
           run_command: ./main.out
 
-  
   powershell:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: mcr.microsoft.com/powershell:latest
@@ -234,17 +386,30 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: powershell
-          
-          
 
           run_command: pwsh main.ps1
 
-  
   java:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        amount: [100, 1000, 10000, 100000, 1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000]
+        amount:
+          [
+            100,
+            1000,
+            10000,
+            100000,
+            1000000,
+            2000000,
+            3000000,
+            4000000,
+            5000000,
+            6000000,
+            7000000,
+            8000000,
+            9000000,
+            10000000,
+          ]
         attempt: [1, 2, 3, 4, 5]
     container:
       image: ibmjava:8-sdk
@@ -255,15 +420,27 @@ jobs:
         uses: "./.github/template/runner"
         with:
           folder: java
-          
+
           build_command: javac Main.java Node.java
 
           run_command: java -Xmx2g Main
 
-
-
   summary:
-    needs: ['lua', 'javascript', 'ruby', 'c', 'cs', 'python3', 'typescript', 'golang', 'rust', 'cpp', 'powershell', 'java']
+    needs:
+      [
+        "lua",
+        "javascript",
+        "ruby",
+        "c",
+        "cs",
+        "python3",
+        "typescript",
+        "golang",
+        "rust",
+        "cpp",
+        "powershell",
+        "java",
+      ]
 
     runs-on: ubuntu-latest
     steps:
@@ -281,9 +458,8 @@ jobs:
           ls ${{ github.workspace }}/temp/results
           python pipeline_analysis.py ${{ github.workspace }}/temp/results
         working-directory: ${{ github.workspace }}
-      - name: Add results.json
+      - name: Commit new results
         run: |
-          git add results.json
           git add results/*
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
