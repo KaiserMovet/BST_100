@@ -1,3 +1,26 @@
+class Results {
+    constructor(result) {
+        this.data = result;
+    }
+
+    get languages() {
+        return Object.keys(this.data)
+    }
+
+    get amounts() {
+        var language = Object.keys(this.data)[0]
+        return Object.keys(this.data[language])
+    }
+
+    get tests() {
+        var language = this.languages[0]
+        var amount = this.amounts[0]
+        return Object.keys(this.data[language][amount])
+    }
+
+
+}
+
 function transformData(data, mode) {
     return Object.keys(data).map(langKey => ({
         label: langKey,
@@ -15,7 +38,7 @@ let charts = [];
 function createPlot(data, element_id, title, mode) {
 
     const ctx = document.getElementById(element_id).getContext('2d');
-    const datasets = transformData(data, mode);
+    const datasets = transformData(data.data, mode);
     const lineChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -74,6 +97,7 @@ function createPlot(data, element_id, title, mode) {
     charts.push(lineChart);
 }
 
+
 function main2(results, conf) {
 
     createPlot(results, 'addingChart', 'Adding elements to BST', "add");
@@ -87,7 +111,7 @@ function main() {
         fetch('results/results.json').then(response => response.json()),
         fetch('results/conf.json').then(response => response.json())
     ]).then(([results, conf]) => {
-        main2(results, conf);
+        main2(new Results(results), conf);
     });
 }
 
