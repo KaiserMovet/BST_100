@@ -180,6 +180,23 @@ class BSTTable {
     createRow(language, results) {
         const row = document.createElement('tr');
 
+        // Add event listener for click
+        row.addEventListener('mouseover', () => {
+            this.onHover(language);
+        });
+
+        row.addEventListener('click', () => {
+            // Remove 'clicked' class from all rows
+            Array.from(this.element.getElementsByTagName('tr')).forEach((otherRow) => {
+                otherRow.classList.remove('clicked');
+            });
+
+            // Add 'clicked' class to the clicked row
+            row.classList.add('clicked');
+
+            this.onClick(language);
+        });
+
         // Name
         const langCell = document.createElement('td');
         langCell.textContent = language;
@@ -201,6 +218,13 @@ class BSTTable {
         })
 
         return rows;
+    }
+
+    onClick(language) {
+        console.log('onClick', language);
+    }
+    onHover(language) {
+        console.log('onHover', language);
     }
 }
 
