@@ -32,8 +32,16 @@ class Result:
                 f"Current validation is {self.validation[0]} and it should be {self.amount}"
             )
 
-    def asdict(self) -> Dict[str, Any]:
-        return asdict(self)
+    def asdict(self, tests_only=False) -> Dict[str, Any]:
+        data = asdict(self)
+        if tests_only:
+            data = {
+                "add": data["add"],
+                "check": data["check"],
+                "len": data["len"],
+                "height": data["height"],
+            }
+        return data
 
     @property
     def has_none(self):
@@ -173,7 +181,9 @@ class ResultCollection:
         for name in self.data.keys():
             temp_data[name] = {}
             for amount in self.data[name].keys():
-                temp_data[name][amount] = self.data[name][amount].asdict()
+                temp_data[name][amount] = self.data[name][amount].asdict(
+                    tests_only=True
+                )
 
         if merge_with_existing:
             with open(file_name, "r") as fp:
