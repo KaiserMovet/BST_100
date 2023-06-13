@@ -112,9 +112,52 @@ function formatNumber(num) {
     }
 }
 
+class BSTConfig {
+    constructor(conf, start_lang) {
+        this.conf = conf;
+        this.element = document.getElementById("configBox");
+        this.table = document.createElement('table');
+        this.element.appendChild(this.table);
+        this.setConfig(start_lang)
+    }
+
+    clear() {
+        // Clear the table
+        this.table.innerHTML = '';
+    }
+
+    setConfig(language) {
+        this.clear();
+        var config = this.conf[language]
+        // Add language row
+        let tr = document.createElement('tr');
+        let th = document.createElement('th');
+        th.textContent = "Language";
+        tr.appendChild(th);
+        let td = document.createElement('td');
+        td.textContent = language;
+        tr.appendChild(td);
+        this.table.appendChild(tr);
+
+        // Add config rows
+        for (let key in config) {
+            if (key == "language") continue;
+            tr = document.createElement('tr');
+            th = document.createElement('th');
+            th.textContent = key;
+            tr.appendChild(th);
+            td = document.createElement('td');
+            td.textContent = config[key];
+            tr.appendChild(td);
+            this.table.appendChild(tr);
+        }
+    }
+}
+
 class BSTTable {
-    constructor(results) {
+    constructor(results, box_config) {
         this.element = document.getElementById("bstTable");
+        this.box_config = box_config;
         this.cells = {};
         this.results = results;
         this.createDropdownMenu();
@@ -125,6 +168,14 @@ class BSTTable {
     }
 
     createDropdownMenu() {
+        const container = document.createElement('div');
+        container.className = 'dropdown-container';
+        this.element.appendChild(container);
+
+        const label = document.createElement('label');
+        label.textContent = "For ";
+        container.appendChild(label);
+
         const select = document.createElement('select');
         this.results.amounts.forEach(amount => {
             const option = document.createElement('option');
@@ -140,10 +191,11 @@ class BSTTable {
             this.refreshData(event.target.value);
         });
 
-        this.element.appendChild(select);
+        container.appendChild(select);
     }
 
     refreshData(amount) {
+        this.current_amount = amount;
         this.results.languages.forEach((lang) => {
             this.results.tests.forEach((test) => {
                 const value = this.results.data[lang][amount][test];
@@ -185,6 +237,10 @@ class BSTTable {
             this.onHover(language);
         });
 
+        row.addEventListener('mouseout', () => {
+            this.exitHover(language);
+        });
+
         row.addEventListener('click', () => {
             // Remove 'clicked' class from all rows
             Array.from(this.element.getElementsByTagName('tr')).forEach((otherRow) => {
@@ -224,13 +280,17 @@ class BSTTable {
         console.log('onClick', language);
     }
     onHover(language) {
-        console.log('onHover', language);
+        this.box_config.setConfig(language, {});
+    }
+
+    exitHover(language) {
+        // this.box_config.clear();
     }
 }
 
 function main2(results, conf) {
-
-    new BSTTable(results)
+    const box_config = new BSTConfig(conf, results.languages[0]);
+    new BSTTable(results, box_config)
     createPlot(results, 'addingChart', 'Adding elements to BST', "add");
     createPlot(results, 'checkingChart', 'Checking elements in BST', "check");
     createPlot(results, 'lenChart', 'Counting elements in BST', "len");
