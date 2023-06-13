@@ -47,6 +47,7 @@ h1 {
 }
 
 #bstTable,
+#bstChart,
 #configBox {
     flex: 1;
     padding: 20px;
@@ -62,10 +63,10 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-#bstTable tr.clicked {
+/* #bstTable tr.clicked {
     background-color: #b2dfdb;
     transition: background-color 0.3s ease;
-}
+} */
 
 #configBox table {
     width: 100%;
@@ -102,4 +103,8 @@ select {
     font-size: 16px;
     color: #333;
     margin-left: 5px;
+}
+
+#bstChartCan {
+    height: 100%;
 }

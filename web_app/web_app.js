@@ -18,6 +18,21 @@ class Results {
         return Object.keys(this.data[language][amount])
     }
 
+    getDataForAmountForBstChart(amount) {
+        var full_data = [];
+        this.tests.forEach(test => {
+            var data = {};
+            data['label'] = test
+            data['data'] = []
+            this.languages.forEach(lang => {
+                data['data'].push({ y: lang, x: this.data[lang][amount][test] });
+            })
+            full_data.push(data)
+        })
+
+        return full_data
+    }
+
 
 }
 
@@ -155,9 +170,10 @@ class BSTConfig {
 }
 
 class BSTTable {
-    constructor(results, box_config) {
+    constructor(results, box_config, bst_chart) {
         this.element = document.getElementById("bstTable");
         this.box_config = box_config;
+        this.bst_chart = bst_chart;
         this.cells = {};
         this.results = results;
         this.createDropdownMenu();
@@ -203,6 +219,7 @@ class BSTTable {
                 this.cells[lang][test].textContent = formatNumber(value)
             })
         })
+        this.bst_chart.updateData(amount, "add");
     }
 
     createTable(results) {
@@ -288,9 +305,45 @@ class BSTTable {
     }
 }
 
+class BSTChart {
+    constructor(results) {
+        this.results = results;
+        const ctx = document.getElementById("bstChartCan").getContext('2d');
+        this.chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                datasets: []
+            },
+            options: {
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        title: {
+                            display: false,
+                            text: 'Time (s)'
+                        },
+                        beginAtZero: true,
+                        type: 'logarithmic',
+                    },
+
+                }
+            },
+
+        });
+    }
+
+    updateData(amount, test) {
+        this.chart.data.datasets = this.results.getDataForAmountForBstChart(amount)
+        this.chart.update();
+    }
+}
+
+
 function main2(results, conf) {
     const box_config = new BSTConfig(conf, results.languages[0]);
-    new BSTTable(results, box_config)
+    const bst_chart = new BSTChart(results);
+    new BSTTable(results, box_config, bst_chart)
     createPlot(results, 'addingChart', 'Adding elements to BST', "add");
     createPlot(results, 'checkingChart', 'Checking elements in BST', "check");
     createPlot(results, 'lenChart', 'Counting elements in BST', "len");
