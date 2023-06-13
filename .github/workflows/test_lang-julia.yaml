@@ -1,0 +1,106 @@
+# THIS FILE IS GENERATED AUTOMATICALLY. IF YOU WANT TO CHANGE THIS, CHANGE
+# 'templates/test_lang.yaml.j2' FILE
+
+name: Test lang - julia
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - BST/julia/**
+
+jobs:
+  test_output_base:
+    runs-on: ubuntu-latest
+    container:
+      image: julia:1.9
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: julia
+          
+          
+          run_command: julia  main.jl
+          lenght: 100
+          height: 14
+  
+  test_output_1:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: julia:1.9
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: julia
+          
+          
+          run_command: julia  main.jl
+          lenght: 2
+          height: 2
+
+  
+  test_output_2:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: julia:1.9
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: julia
+          
+          
+          run_command: julia  main.jl
+          lenght: 5
+          height: 4
+
+  
+  test_output_3:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: julia:1.9
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: julia
+          
+          
+          run_command: julia  main.jl
+          lenght: 15
+          height: 7
+
+  
+  test_output_4:
+    needs: test_output_base
+    runs-on: ubuntu-latest
+    container:
+      image: julia:1.9
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test bst
+        uses: "./.github/template/test_lang"
+        with:
+          folder: julia
+          
+          
+          run_command: julia  main.jl
+          lenght: 500
+          height: 19
+
+  
