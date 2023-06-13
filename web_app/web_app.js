@@ -97,9 +97,116 @@ function createPlot(data, element_id, title, mode) {
     charts.push(lineChart);
 }
 
+function formatNumber(num) {
+    if (typeof num !== 'number') {
+        return num;
+    }
+    if (num > 1e3) {
+        return num.toFixed(0);
+    } else if (num > 1e1) {
+        return num.toFixed(2);
+    } else if (num < 1e-4) {
+        return num.toExponential(4);
+    } else {
+        return num.toFixed(4);
+    }
+}
+
+class BSTTable {
+    constructor(results) {
+        this.element = document.getElementById("bstTable");
+        this.cells = {};
+        this.results = results;
+        this.createDropdownMenu();
+        this.createTable(results);
+
+        // Call refreshData with the value of the last option.
+        this.refreshData(this.results.amounts[this.results.amounts.length - 1]);
+    }
+
+    createDropdownMenu() {
+        const select = document.createElement('select');
+        this.results.amounts.forEach(amount => {
+            const option = document.createElement('option');
+            option.textContent = amount;
+            option.value = amount;
+            select.appendChild(option);
+        });
+
+        // Set the selected option to the last element.
+        select.selectedIndex = this.results.amounts.length - 1;
+
+        select.addEventListener('change', (event) => {
+            this.refreshData(event.target.value);
+        });
+
+        this.element.appendChild(select);
+    }
+
+    refreshData(amount) {
+        this.results.languages.forEach((lang) => {
+            this.results.tests.forEach((test) => {
+                const value = this.results.data[lang][amount][test];
+                console.log(this.cells)
+                this.cells[lang][test].textContent = formatNumber(value)
+            })
+        })
+    }
+
+    createTable(results) {
+        var table = document.createElement('table');
+        table.appendChild(this.createHeader(results))
+        this.element.appendChild(table);
+        var rows = this.createRows(results);
+        rows.forEach(row => {
+            table.appendChild(row)
+        })
+    }
+    createHeader(results) {
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        const langHeader = document.createElement('th');
+        langHeader.textContent = "Language";
+        headerRow.appendChild(langHeader);
+        results.tests.forEach(header => {
+            const th = document.createElement('th');
+            th.textContent = header;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        return thead;
+    }
+
+    createRow(language, results) {
+        const row = document.createElement('tr');
+
+        // Name
+        const langCell = document.createElement('td');
+        langCell.textContent = language;
+        row.appendChild(langCell);
+        this.cells[language] = {};
+        results.tests.forEach(test => {
+            var cell = document.createElement('td');
+            this.cells[language][test] = cell
+            row.appendChild(cell);
+        })
+
+        return row
+    }
+
+    createRows(results) {
+        var rows = [];
+        results.languages.forEach(lang => {
+            rows.push(this.createRow(lang, results));
+        })
+
+        return rows;
+    }
+}
 
 function main2(results, conf) {
 
+    new BSTTable(results)
     createPlot(results, 'addingChart', 'Adding elements to BST', "add");
     createPlot(results, 'checkingChart', 'Checking elements in BST', "check");
     createPlot(results, 'lenChart', 'Counting elements in BST', "len");
