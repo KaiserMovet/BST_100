@@ -1,0 +1,2 @@
+image_name: julia:1.9
+run_command: julia  main.jl
