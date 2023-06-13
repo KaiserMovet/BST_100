@@ -23,7 +23,7 @@ function main()
         add(bst, i)
     end
     end_time = time()
-    println("ADD_TEST: ", end_time - start_time)
+    println("ADD_TEST:", end_time - start_time)
 
     # Check elements
     start_time = time()
@@ -31,7 +31,7 @@ function main()
         contain(bst, i)
     end
     end_time = time()
-    println("CHECK_TEST: ", end_time - start_time)
+    println("CHECK_TEST:", end_time - start_time)
 
     # Len elements
     start_time = time()
@@ -39,7 +39,7 @@ function main()
         length(bst)
     end
     end_time = time()
-    println("LEN_TEST: ", (end_time - start_time)/10)
+    println("LEN_TEST:", (end_time - start_time)/10)
 
     # Height elements
     start_time = time()
@@ -47,9 +47,9 @@ function main()
         height(bst)
     end
     end_time = time()
-    println("HEIGHT_TEST: ", (end_time - start_time)/10)
+    println("HEIGHT_TEST:", (end_time - start_time)/10)
 
-    println("VALIDATION: ", length(bst), ":", height(bst))
+    println("VALIDATION:", length(bst), ":", height(bst))
 end
 
 main()
